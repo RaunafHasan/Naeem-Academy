@@ -1,3 +1,29 @@
+/* Responsive Table Wrapper for Examples */
+.responsive-table {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 1.5rem;
+}
+.responsive-table table {
+    min-width: 600px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+@media (max-width: 768px) {
+    .responsive-table table {
+        min-width: 400px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .responsive-table table {
+        min-width: 320px;
+        font-size: 0.75rem;
+    }
+}
 /* === Custom Bangla Fonts === */
 @font-face {
     font-family: 'Tiro Bangla';
