@@ -1,3 +1,51 @@
+/* === Custom Bangla Fonts === */
+@font-face {
+    font-family: 'Tiro Bangla';
+    src: url('fonts/Tiro_Bangla/TiroBangla-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    unicode-range: U+0980-09FF;
+}
+@font-face {
+    font-family: 'Tiro Bangla';
+    src: url('fonts/Tiro_Bangla/TiroBangla-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+    unicode-range: U+0980-09FF;
+}
+@font-face {
+    font-family: 'Times New Roman Bangla';
+    src: url('fonts/times-new-roman/times.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    unicode-range: U+0980-09FF;
+}
+
+/* Utility class for Bangla text */
+.bangla-text {
+    font-family: 'Tiro Bangla', 'Times New Roman Bangla', 'Noto Sans Bengali', 'SolaimanLipi', 'Siyam Rupali', serif;
+}
+
+/* Apply Bangla font to Bangla Unicode range globally */
+body, html {
+    font-family: 'Outfit', sans-serif;
+}
+
+body, html, * {
+    font-feature-settings: "kern" 1;
+}
+
+/* Bangla font for Bangla Unicode */
+@media screen {
+    body, html, * {
+        font-family: 'Tiro Bangla', 'Times New Roman Bangla', 'Noto Sans Bengali', 'SolaimanLipi', 'Siyam Rupali', 'Outfit', sans-serif;
+    }
+}
+
+/* Stronger selector for elements with Bangla text */
+[lang="bn"], .bangla, .bangla-text {
+    font-family: 'Tiro Bangla', 'Times New Roman Bangla', 'Noto Sans Bengali', 'SolaimanLipi', 'Siyam Rupali', serif !important;
+}
 /* Global Styles - Naeem Academy */
 /*
     Avoid using the universal selector for margin/padding reset, as it can override Tailwind's spacing utilities.
