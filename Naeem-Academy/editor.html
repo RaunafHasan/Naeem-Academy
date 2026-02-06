@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple HTML Editor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            color: #fff;
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        .editor-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            height: calc(100vh - 150px);
+        }
+
+        .panel {
+            background: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .panel-header {
+            background: #334155;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .panel-title {
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .panel-title .icon {
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            background: #3b82f6;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        .btn-clear {
+            background: #ef4444;
+        }
+
+        .btn-clear:hover {
+            background: #dc2626;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        #editor {
+            flex: 1;
+            width: 100%;
+            padding: 20px;
+            background: #0f172a;
+            color: #e2e8f0;
+            border: none;
+            resize: none;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            outline: none;
+        }
+
+        #editor::placeholder {
+            color: #475569;
+        }
+
+        #preview {
+            flex: 1;
+            background: #fff;
+            padding: 20px;
+            overflow: auto;
+        }
+
+        .status-bar {
+            background: #334155;
+            padding: 8px 20px;
+            display: flex;
+            justify-content: space-between;
+            color: #94a3b8;
+            font-size: 0.75rem;
+        }
+
+        .live-badge {
+            background: #22c55e;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .editor-container {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .panel {
+                height: 400px;
+            }
+        }
+
+        /* Autocomplete dropdown */
+        .autocomplete-dropdown {
+            position: absolute;
+            background: #1e293b;
+            border: 1px solid #3b82f6;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+
+        .autocomplete-item {
+            padding: 8px 15px;
+            cursor: pointer;
+            color: #e2e8f0;
+            font-family: 'Consolas', monospace;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .autocomplete-item:hover,
+        .autocomplete-item.selected {
+            background: #3b82f6;
+        }
+
+        .autocomplete-item .tag-name {
+            color: #22d3ee;
+            font-weight: bold;
+        }
+
+        .autocomplete-item .tag-desc {
+            color: #94a3b8;
+            font-size: 11px;
+        }
+
+        /* Scrollbar styling */
+        #editor::-webkit-scrollbar,
+        #preview::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #editor::-webkit-scrollbar-track,
+        #preview::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+
+        #editor::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+
+        #preview::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        /* Template buttons */
+        .templates {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .template-btn {
+            background: #475569;
+            color: #e2e8f0;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .template-btn:hover {
+            background: #3b82f6;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!--#include file="header.html" -->
+    <div class="container">
+        <header>
+            <h1>📝 Simple HTML Editor</h1>
+            <p>Write HTML code on the left, see the result on the right!</p>
+        </header>
+
+        <div class="templates">
+            <button class="template-btn" onclick="loadTemplate('basic')">Basic Template</button>
+            <button class="template-btn" onclick="loadTemplate('heading')">Headings</button>
+            <button class="template-btn" onclick="loadTemplate('list')">Lists</button>
+            <button class="template-btn" onclick="loadTemplate('link')">Links & Images</button>
+            <button class="template-btn" onclick="loadTemplate('form')">Form</button>
+            <button class="template-btn" onclick="loadTemplate('table')">Table</button>
+        </div>
+
+        <div class="editor-container">
+            <!-- Code Editor Panel -->
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-title">
+                        <span class="icon">💻</span> HTML Code
+                    </span>
+                    <div class="btn-group">
+                        <button class="btn btn-clear" onclick="clearEditor()">
+                            🗑️ Clear
+                        </button>
+                    </div>
+                </div>
+                <textarea id="editor" placeholder="Start typing your HTML code here...
+
+Example:
+<h1>Hello World</h1>
+<p>This is a paragraph.</p>"></textarea>
+                <div id="autocomplete" class="autocomplete-dropdown"></div>
+                <div class="status-bar">
+                    <span id="char-count">Characters: 0</span>
+                    <span id="line-count">Lines: 1</span>
+                </div>
+            </div>
+
+            <!-- Preview Panel -->
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-title">
+                        <span class="icon">👁️</span> Live Preview
+                        <span class="live-badge">LIVE</span>
+                    </span>
+                    <button class="btn" onclick="runCode()">
+                        ▶️ Run
+                    </button>
+                </div>
+                <div id="preview"></div>
+                <div class="status-bar">
+                    <span>Preview updates as you type</span>
+                    <span>Press Ctrl+Enter to run</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const editor = document.getElementById('editor');
+        const preview = document.getElementById('preview');
+        const charCount = document.getElementById('char-count');
+        const lineCount = document.getElementById('line-count');
+
+        // Templates
+        const templates = {
+            basic: `<!DOCTYPE html>
+<html>
+<head>
+    <title>My Page</title>
+</head>
+    <!--#include file="footer.html" -->
+</body>
+    <p>This is my first webpage.</p>
+</body>
+</html>`,
+            heading: `<h1>Heading 1 - Largest</h1>
+<h2>Heading 2</h2>
+<h3>Heading 3</h3>
+<h4>Heading 4</h4>
+<h5>Heading 5</h5>
+<h6>Heading 6 - Smallest</h6>`,
+            list: `<h3>Unordered List</h3>
+<ul>
+    <li>Apple</li>
+    <li>Banana</li>
+    <li>Orange</li>
+</ul>
+
+<h3>Ordered List</h3>
+<ol>
+    <li>First item</li>
+    <li>Second item</li>
+    <li>Third item</li>
+</ol>`,
+            link: `<h3>Links</h3>
+<a href="https://www.google.com" target="_blank">Visit Google</a>
+
+<h3>Image</h3>
+<img src="https://via.placeholder.com/200x150" alt="Placeholder Image">
+
+<h3>Image as Link</h3>
+<a href="https://example.com">
+    <img src="https://via.placeholder.com/100" alt="Click me">
+</a>`,
+            form: `<h3>Contact Form</h3>
+<form>
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" placeholder="Enter your name"><br><br>
+    
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" placeholder="Enter your email"><br><br>
+    
+    <label for="message">Message:</label><br>
+    <textarea id="message" rows="4" cols="30" placeholder="Your message..."></textarea><br><br>
+    
+    <button type="submit">Submit</button>
+</form>`,
+            table: `<h3>Simple Table</h3>
+<table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>City</th>
+    </tr>
+    <tr>
+        <td>John</td>
+        <td>25</td>
+        <td>New York</td>
+    </tr>
+    <tr>
+        <td>Sarah</td>
+        <td>30</td>
+        <td>London</td>
+    </tr>
+    <tr>
+        <td>Mike</td>
+        <td>28</td>
+        <td>Tokyo</td>
+    </tr>
+</table>`
+        };
+
+        // Load template
+        function loadTemplate(name) {
+            editor.value = templates[name];
+            runCode();
+            updateStats();
+        }
+
+        // Run code / update preview
+        function runCode() {
+            preview.innerHTML = editor.value;
+        }
+
+        // Clear editor
+        function clearEditor() {
+            if (confirm('Are you sure you want to clear the editor?')) {
+                editor.value = '';
+                preview.innerHTML = '';
+                updateStats();
+            }
+        }
+
+        // Update character and line count
+        function updateStats() {
+            const text = editor.value;
+            charCount.textContent = `Characters: ${text.length}`;
+            lineCount.textContent = `Lines: ${text.split('\n').length}`;
+        }
+
+        // Live preview as you type
+        editor.addEventListener('input', () => {
+            runCode();
+            updateStats();
+        });
+
+        // Keyboard shortcut: Ctrl+Enter to run
+        editor.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                e.preventDefault();
+                runCode();
+            }
+            
+            // Tab key for indentation
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = editor.selectionStart;
+                const end = editor.selectionEnd;
+                editor.value = editor.value.substring(0, start) + '    ' + editor.value.substring(end);
+                editor.selectionStart = editor.selectionEnd = start + 4;
+                runCode();
+            }
+        });
+
+        // Load basic template on start
+        loadTemplate('basic');
+
+        // ============ AUTOCOMPLETE FEATURE ============
+        const autocompleteDropdown = document.getElementById('autocomplete');
+        
+        // HTML Tags for autocomplete
+        const htmlTagsList = [
+            { tag: 'html', desc: 'Root element', selfClosing: false },
+            { tag: 'head', desc: 'Document head', selfClosing: false },
+            { tag: 'title', desc: 'Page title', selfClosing: false },
+            { tag: 'body', desc: 'Document body', selfClosing: false },
+            { tag: 'h1', desc: 'Heading 1', selfClosing: false },
+            { tag: 'h2', desc: 'Heading 2', selfClosing: false },
+            { tag: 'h3', desc: 'Heading 3', selfClosing: false },
+            { tag: 'h4', desc: 'Heading 4', selfClosing: false },
+            { tag: 'h5', desc: 'Heading 5', selfClosing: false },
+            { tag: 'h6', desc: 'Heading 6', selfClosing: false },
+            { tag: 'p', desc: 'Paragraph', selfClosing: false },
+            { tag: 'div', desc: 'Division', selfClosing: false },
+            { tag: 'span', desc: 'Inline container', selfClosing: false },
+            { tag: 'a', desc: 'Anchor link', selfClosing: false },
+            { tag: 'img', desc: 'Image', selfClosing: true },
+            { tag: 'br', desc: 'Line break', selfClosing: true },
+            { tag: 'hr', desc: 'Horizontal rule', selfClosing: true },
+            { tag: 'input', desc: 'Input field', selfClosing: true },
+            { tag: 'ul', desc: 'Unordered list', selfClosing: false },
+            { tag: 'ol', desc: 'Ordered list', selfClosing: false },
+            { tag: 'li', desc: 'List item', selfClosing: false },
+            { tag: 'table', desc: 'Table', selfClosing: false },
+            { tag: 'tr', desc: 'Table row', selfClosing: false },
+            { tag: 'td', desc: 'Table cell', selfClosing: false },
+            { tag: 'th', desc: 'Table header', selfClosing: false },
+            { tag: 'thead', desc: 'Table head', selfClosing: false },
+            { tag: 'tbody', desc: 'Table body', selfClosing: false },
+            { tag: 'form', desc: 'Form', selfClosing: false },
+            { tag: 'label', desc: 'Label', selfClosing: false },
+            { tag: 'button', desc: 'Button', selfClosing: false },
+            { tag: 'textarea', desc: 'Text area', selfClosing: false },
+            { tag: 'select', desc: 'Dropdown', selfClosing: false },
+            { tag: 'option', desc: 'Option', selfClosing: false },
+            { tag: 'strong', desc: 'Bold text', selfClosing: false },
+            { tag: 'b', desc: 'Bold', selfClosing: false },
+            { tag: 'em', desc: 'Emphasis', selfClosing: false },
+            { tag: 'i', desc: 'Italic', selfClosing: false },
+            { tag: 'u', desc: 'Underline', selfClosing: false },
+            { tag: 'header', desc: 'Header section', selfClosing: false },
+            { tag: 'footer', desc: 'Footer section', selfClosing: false },
+            { tag: 'nav', desc: 'Navigation', selfClosing: false },
+            { tag: 'main', desc: 'Main content', selfClosing: false },
+            { tag: 'section', desc: 'Section', selfClosing: false },
+            { tag: 'article', desc: 'Article', selfClosing: false },
+            { tag: 'aside', desc: 'Sidebar', selfClosing: false },
+            { tag: 'script', desc: 'JavaScript', selfClosing: false },
+            { tag: 'style', desc: 'CSS styles', selfClosing: false },
+            { tag: 'link', desc: 'External resource', selfClosing: true },
+            { tag: 'meta', desc: 'Metadata', selfClosing: true },
+            { tag: 'video', desc: 'Video', selfClosing: false },
+            { tag: 'audio', desc: 'Audio', selfClosing: false },
+            { tag: 'iframe', desc: 'Inline frame', selfClosing: false },
+            { tag: 'canvas', desc: 'Drawing canvas', selfClosing: false },
+            { tag: 'code', desc: 'Code text', selfClosing: false },
+            { tag: 'pre', desc: 'Preformatted', selfClosing: false },
+            { tag: 'blockquote', desc: 'Quote block', selfClosing: false }
+        ];
+
+        let selectedIndex = -1;
+        let filteredTags = [];
+        let currentWord = '';
+        let wordStart = 0;
+
+        // Get current word being typed
+        function getCurrentWord() {
+            const cursorPos = editor.selectionStart;
+            const text = editor.value;
+            
+            // Find the start of current word (after < or space/newline)
+            let start = cursorPos;
+            while (start > 0) {
+                const char = text[start - 1];
+                if (char === '<') {
+                    start--; // Include the <
+                    break;
+                }
+                if (char === ' ' || char === '\n' || char === '\t' || char === '>') {
+                    break;
+                }
+                start--;
+            }
+            
+            const word = text.substring(start, cursorPos);
+            return { word, start };
+        }
+
+        // Show autocomplete dropdown
+        function showAutocomplete(matches, x, y) {
+            if (matches.length === 0) {
+                hideAutocomplete();
+                return;
+            }
+
+            filteredTags = matches;
+            selectedIndex = 0;
+
+            autocompleteDropdown.innerHTML = matches.map((item, index) => `
+                <div class="autocomplete-item ${index === 0 ? 'selected' : ''}" data-index="${index}">
+                    <span class="tag-name">&lt;${item.tag}&gt;</span>
+                    <span class="tag-desc">${item.desc}</span>
+                </div>
+            `).join('');
+
+            // Position dropdown near cursor
+            const editorRect = editor.getBoundingClientRect();
+            autocompleteDropdown.style.left = `${Math.min(x, editorRect.width - 250)}px`;
+            autocompleteDropdown.style.top = `${y + 20}px`;
+            autocompleteDropdown.style.display = 'block';
+
+            // Add click handlers
+            autocompleteDropdown.querySelectorAll('.autocomplete-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    insertTag(filteredTags[parseInt(item.dataset.index)]);
+                });
+            });
+        }
+
+        // Hide autocomplete
+        function hideAutocomplete() {
+            autocompleteDropdown.style.display = 'none';
+            filteredTags = [];
+            selectedIndex = -1;
+        }
+
+        // Insert selected tag
+        function insertTag(tagItem) {
+            const cursorPos = editor.selectionStart;
+            const text = editor.value;
+            
+            // Remove the typed text and insert full tag
+            const beforeWord = text.substring(0, wordStart);
+            const afterCursor = text.substring(cursorPos);
+            
+            let insertion;
+            if (tagItem.selfClosing) {
+                insertion = `<${tagItem.tag}>`;
+            } else {
+                insertion = `<${tagItem.tag}></${tagItem.tag}>`;
+            }
+            
+            editor.value = beforeWord + insertion + afterCursor;
+            
+            // Position cursor between tags
+            if (tagItem.selfClosing) {
+                editor.selectionStart = editor.selectionEnd = wordStart + insertion.length;
+            } else {
+                editor.selectionStart = editor.selectionEnd = wordStart + tagItem.tag.length + 2;
+            }
+            
+            hideAutocomplete();
+            runCode();
+            updateStats();
+            editor.focus();
+        }
+
+        // Handle input for autocomplete
+        editor.addEventListener('input', (e) => {
+            const { word, start } = getCurrentWord();
+            currentWord = word;
+            wordStart = start;
+            
+            // Check if we're typing after <
+            if (word.startsWith('<')) {
+                const searchTerm = word.substring(1).toLowerCase();
+                const matches = htmlTagsList.filter(item => 
+                    item.tag.toLowerCase().startsWith(searchTerm)
+                );
+                
+                if (matches.length > 0 && searchTerm.length > 0) {
+                    // Calculate position
+                    const lines = editor.value.substring(0, start).split('\n');
+                    const lineHeight = 22; // approximate line height
+                    const y = (lines.length - 1) * lineHeight;
+                    const x = 20 + (lines[lines.length - 1].length * 8);
+                    
+                    showAutocomplete(matches, x, y);
+                } else {
+                    hideAutocomplete();
+                }
+            } else {
+                hideAutocomplete();
+            }
+        });
+
+        // Handle keyboard navigation in autocomplete
+        editor.addEventListener('keydown', (e) => {
+            if (autocompleteDropdown.style.display === 'block') {
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    selectedIndex = Math.min(selectedIndex + 1, filteredTags.length - 1);
+                    updateSelection();
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    selectedIndex = Math.max(selectedIndex - 1, 0);
+                    updateSelection();
+                } else if (e.key === 'Enter' || e.key === 'Tab') {
+                    if (filteredTags.length > 0 && selectedIndex >= 0) {
+                        e.preventDefault();
+                        insertTag(filteredTags[selectedIndex]);
+                    }
+                } else if (e.key === 'Escape') {
+                    hideAutocomplete();
+                }
+            }
+        });
+
+        // Update visual selection
+        function updateSelection() {
+            autocompleteDropdown.querySelectorAll('.autocomplete-item').forEach((item, index) => {
+                if (index === selectedIndex) {
+                    item.classList.add('selected');
+                    item.scrollIntoView({ block: 'nearest' });
+                } else {
+                    item.classList.remove('selected');
+                }
+            });
+        }
+
+        // Hide autocomplete when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!autocompleteDropdown.contains(e.target) && e.target !== editor) {
+                hideAutocomplete();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Learning - Naeem Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;600;800&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-950">
+    <!--#include file="header.html" -->
+
+    <!-- Main Content -->
+    <main class="pt-20 sm:pt-24 pb-12 sm:pb-16">
+        <div class="container mx-auto px-4 sm:px-6">
+            <!-- Hero Section -->
+            <div class="text-center mb-8 sm:mb-12 lg:mb-16 hero-section">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-3 sm:mb-4 hero-title leading-tight">
+                    Master HTML Tags
+                    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">One Tag at a Time</span>
+                </h2>
+                <p class="text-base sm:text-lg lg:text-xl text-slate-400 max-w-2xl mx-auto px-4" style="font-family: 'Noto Sans Bengali', sans-serif;">
+                    HTML ট্যাগ শিখুন ইন্টারেক্টিভ উদাহরণ এবং অনুশীলনের মাধ্যমে।
+                </p>
+            </div>
+
+            <!-- Category Filter -->
+            <div class="mb-6 sm:mb-8 lg:mb-10 -mx-4 sm:mx-0">
+                <div class="flex sm:flex-wrap sm:justify-center gap-2 sm:gap-3 overflow-x-auto hide-scrollbar px-4 sm:px-0 pb-2 sm:pb-0">
+                    <button onclick="filterByCategory('all')" class="category-btn active px-4 sm:px-5 py-2 rounded-full bg-cyan-500 text-white font-semibold hover:bg-cyan-600 transition-all whitespace-nowrap text-sm sm:text-base flex-shrink-0" data-category="all">
+                        সব ট্যাগ
+                    </button>
+                    <button onclick="filterByCategory('Basic Structure')" class="category-btn px-4 sm:px-5 py-2 rounded-full bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700 transition-all whitespace-nowrap text-sm sm:text-base flex-shrink-0" data-category="Basic Structure">
+                        📁 Basic
+                    </button>
+                    <button onclick="filterByCategory('Text Formatting')" class="category-btn px-4 sm:px-5 py-2 rounded-full bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700 transition-all whitespace-nowrap text-sm sm:text-base flex-shrink-0" data-category="Text Formatting">
+                        ✏️ Text
+                    </button>
+                    <button onclick="filterByCategory('List Tags')" class="category-btn px-4 sm:px-5 py-2 rounded-full bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700 transition-all whitespace-nowrap text-sm sm:text-base flex-shrink-0" data-category="List Tags">
+                        📋 List
+                    </button>
+                    <button onclick="filterByCategory('Link & Media')" class="category-btn px-4 sm:px-5 py-2 rounded-full bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700 transition-all whitespace-nowrap text-sm sm:text-base flex-shrink-0" data-category="Link & Media">
+                        🔗 Link
+                    </button>
+                    <button onclick="filterByCategory('Table Tags')" class="category-btn px-4 sm:px-5 py-2 rounded-full bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700 transition-all whitespace-nowrap text-sm sm:text-base flex-shrink-0" data-category="Table Tags">
+                        📊 Table
+                    </button>
+                    <button onclick="filterByCategory('Form Tags')" class="category-btn px-4 sm:px-5 py-2 rounded-full bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700 transition-all whitespace-nowrap text-sm sm:text-base flex-shrink-0" data-category="Form Tags">
+                        📝 Form
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tag Grid -->
+            <div class="mb-8 sm:mb-12">
+                <div id="tagGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 lg:gap-6">
+                    <!-- Cards will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Tag Detail Modal -->
+            <div id="tagModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-0 sm:p-4 lg:p-6">
+                <div class="bg-slate-900 sm:rounded-2xl w-full h-full sm:h-auto sm:max-w-4xl sm:max-h-[90vh] overflow-hidden shadow-2xl border-0 sm:border border-cyan-500/30 modal-content">
+                    <!-- Close Button -->
+                    <div class="flex justify-between items-center p-4 sm:p-6 lg:p-8 border-b border-slate-800 sticky top-0 bg-slate-900 z-10">
+                        <h3 id="modalTagName" class="text-2xl sm:text-3xl lg:text-4xl font-black text-white"></h3>
+                        <button id="closeModal" class="text-slate-400 hover:text-white transition-colors p-2">
+                            <svg class="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="overflow-y-auto h-[calc(100vh-80px)] sm:max-h-[calc(90vh-120px)] p-4 sm:p-6 lg:p-8">
+                        <!-- Description -->
+                        <div class="mb-6 sm:mb-8">
+                            <p id="modalDescription" class="text-base sm:text-lg text-slate-300"></p>
+                        </div>
+
+                        <!-- Syntax Section -->
+                        <div class="mb-6 sm:mb-8 section-fade-in">
+                            <div class="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
+                                <div class="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center">
+                                    <span class="text-white font-bold text-sm sm:text-base">1</span>
+                                </div>
+                                <h4 class="text-xl sm:text-2xl font-bold text-white">Syntax</h4>
+                            </div>
+                            <div class="bg-slate-950 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-slate-800 overflow-x-auto">
+                                <pre class="text-cyan-400 font-mono text-xs sm:text-sm"><code id="modalSyntax"></code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Example Section -->
+                        <div class="mb-6 sm:mb-8 section-fade-in">
+                            <div class="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
+                                <div class="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
+                                    <span class="text-white font-bold text-sm sm:text-base">2</span>
+                                </div>
+                                <h4 class="text-xl sm:text-2xl font-bold text-white">Example</h4>
+                            </div>
+                            <div class="bg-slate-950 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-slate-800 mb-3 sm:mb-4 overflow-x-auto">
+                                <pre class="text-emerald-400 font-mono text-xs sm:text-sm"><code id="modalExample"></code></pre>
+                            </div>
+                            <div class="bg-slate-800 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-slate-700 overflow-x-auto">
+                                <div class="text-xs text-slate-400 mb-2 sm:mb-3 font-semibold">OUTPUT:</div>
+                                <div id="modalOutput" class="text-white text-sm sm:text-base"></div>
+                            </div>
+                        </div>
+
+                        <!-- Practice Section -->
+                        <div class="section-fade-in">
+                            <div class="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
+                                <div class="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center">
+                                    <span class="text-white font-bold text-sm sm:text-base">3</span>
+                                </div>
+                                <h4 class="text-xl sm:text-2xl font-bold text-white">Practice</h4>
+                            </div>
+                            <div class="bg-gradient-to-br from-slate-900 to-slate-950 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-orange-500/30">
+                                <p id="modalChallenge" class="text-slate-300 mb-3 sm:mb-4 text-sm sm:text-base"></p>
+                                <textarea 
+                                    id="practiceInput" 
+                                    class="w-full bg-slate-950 text-cyan-400 font-mono text-xs sm:text-sm p-3 sm:p-4 rounded-lg border border-slate-700 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all min-h-[100px] sm:min-h-[120px]"
+                                    placeholder="Write your HTML code here..."></textarea>
+                                <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mt-3 sm:mt-4">
+                                    <button id="runCode" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transition-all transform hover:scale-105 text-sm sm:text-base">
+                                        ▶ Run Code
+                                    </button>
+                                    <button id="resetCode" class="text-slate-400 hover:text-white transition-colors py-2">
+                                        Reset
+                                    </button>
+                                </div>
+                                <div id="practiceOutput" class="mt-3 sm:mt-4 bg-slate-800 rounded-lg p-3 sm:p-4 border border-slate-700 hidden">
+                                    <div class="text-xs text-slate-400 mb-2 font-semibold">YOUR OUTPUT:</div>
+                                    <div id="practiceResult" class="text-white text-sm sm:text-base"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!--#include file="footer.html" -->
+
+    <script src="html-script.js"></script>
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

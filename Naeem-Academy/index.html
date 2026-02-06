@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naeem Academy - Learn Programming</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;600;800&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-950">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg bg-slate-950/80 border-b border-violet-500/20">
+        <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2 sm:space-x-3">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center">
+                        <span class="text-white font-bold text-xl sm:text-2xl">N</span>
+                    </div>
+                    <h1 class="text-xl sm:text-2xl font-bold text-white logo-text">Naeem Academy</h1>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden text-white p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-violet-400 font-semibold nav-link">Home</a>
+                    <a href="html.html" class="text-slate-300 hover:text-cyan-400 transition-colors nav-link">HTML</a>
+                    <a href="examples.html" class="text-cyan-400 hover:text-cyan-300 transition-colors nav-link">HTML Examples</a>
+                    <a href="c-programming.html" class="text-slate-300 hover:text-emerald-400 transition-colors nav-link">C Programming</a>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-2 border-t border-slate-800 pt-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="index.html" class="text-violet-400 font-semibold">Home</a>
+                    <a href="html.html" class="text-slate-300 hover:text-cyan-400 transition-colors">HTML</a>
+                    <a href="examples.html" class="text-cyan-400 hover:text-cyan-300 transition-colors">HTML Examples</a>
+                    <a href="c-programming.html" class="text-slate-300 hover:text-emerald-400 transition-colors">C Programming</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="pt-24 sm:pt-32 pb-16">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center mb-16 hero-section">
+                <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-4 hero-title leading-tight">
+                    Welcome to
+                    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-purple-500 to-pink-500">Naeem Academy</span>
+                </h2>
+                <p class="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto mb-8" style="font-family: 'Noto Sans Bengali', sans-serif;">
+                    প্রোগ্রামিং শেখার সেরা প্ল্যাটফর্ম। HTML এবং C Programming শিখুন সহজ বাংলায়।
+                </p>
+                <p class="text-base text-slate-500 max-w-2xl mx-auto">
+                    Learn programming through interactive examples and hands-on practice. Build your foundation with precision.
+                </p>
+            </div>
+
+            <!-- Course Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto mb-16">
+                
+                <!-- HTML Course Card -->
+                <a href="html.html" class="course-card group bg-gradient-to-br from-slate-900 to-slate-950 rounded-2xl p-6 sm:p-8 border border-slate-800 hover:border-cyan-500/50 transition-all transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-cyan-500/10">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-2xl flex items-center justify-center text-white font-bold text-2xl shadow-lg group-hover:scale-110 transition-transform">
+                            &lt;/&gt;
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">HTML</h3>
+                            <p class="text-cyan-400 text-sm">Web Development Basics</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 mb-6" style="font-family: 'Noto Sans Bengali', sans-serif;">
+                        ওয়েব ডেভেলপমেন্টের ভিত্তি শিখুন। HTML ট্যাগ, ফরম, টেবিল এবং আরও অনেক কিছু।
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 text-xs bg-cyan-500/20 text-cyan-400 rounded-full">Tags</span>
+                <!--#include file="header.html" -->
+                    </div>
+                    <p class="text-slate-400 mb-6" style="font-family: 'Noto Sans Bengali', sans-serif;">
+                        প্রোগ্রামিং এর মূল ভিত্তি শিখুন। ভেরিয়েবল, লুপ, ফাংশন এবং পয়েন্টার।
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 text-xs bg-emerald-500/20 text-emerald-400 rounded-full">Variables</span>
+                            <span class="px-3 py-1 text-xs bg-emerald-500/20 text-emerald-400 rounded-full">Loops</span>
+                            <span class="px-3 py-1 text-xs bg-emerald-500/20 text-emerald-400 rounded-full">Functions</span>
+                        </div>
+                        <span class="text-emerald-400 font-semibold group-hover:translate-x-2 transition-transform">→</span>
+                    </div>
+                </a>
+            </div>
+
+
+
+            <!-- Features Section -->
+            <div class="mt-20 text-center">
+                <h3 class="text-2xl sm:text-3xl font-bold text-white mb-10" style="font-family: 'Noto Sans Bengali', sans-serif;">
+                    কেন Naeem Academy?
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="p-6 bg-slate-900/50 rounded-xl border border-slate-800">
+                        <div class="text-4xl mb-4">🇧🇩</div>
+                        <h4 class="text-lg font-bold text-white mb-2">বাংলায় ব্যাখ্যা</h4>
+                        <p class="text-slate-400 text-sm">সহজ বাংলায় প্রতিটি কনসেপ্ট</p>
+                    </div>
+                    <div class="p-6 bg-slate-900/50 rounded-xl border border-slate-800">
+                        <div class="text-4xl mb-4">💻</div>
+                        <h4 class="text-lg font-bold text-white mb-2">ইন্টারেক্টিভ</h4>
+                        <p class="text-slate-400 text-sm">হাতে-কলমে শিখুন</p>
+                    </div>
+                    <div class="p-6 bg-slate-900/50 rounded-xl border border-slate-800">
+                        <div class="text-4xl mb-4">📱</div>
+                        <h4 class="text-lg font-bold text-white mb-2">মোবাইল ফ্রেন্ডলি</h4>
+                        <p class="text-slate-400 text-sm">যেকোনো ডিভাইসে শিখুন</p>
+                    </div>
+                    <div class="p-6 bg-slate-900/50 rounded-xl border border-slate-800">
+                        <div class="text-4xl mb-4">🆓</div>
+                        <h4 class="text-lg font-bold text-white mb-2">সম্পূর্ণ ফ্রি</h4>
+                        <p class="text-slate-400 text-sm">কোনো খরচ নেই</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-12">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">N</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Naeem Academy</h3>
+                    </div>
+                    <p class="text-slate-400 text-sm">
+                        প্রোগ্রামিং শেখার সেরা প্ল্যাটফর্ম
+                    </p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="html.html" class="text-slate-400 hover:text-cyan-400 transition-colors">HTML Learning</a></li>
+                        <li><a href="c-programming.html" class="text-slate-400 hover:text-emerald-400 transition-colors">C Programming</a></li>
+                        <li><a href="editor.html" class="text-slate-400 hover:text-violet-400 transition-colors">HTML Editor</a></li>
+                        <li><a href="c-editor.html" class="text-slate-400 hover:text-green-400 transition-colors">C Editor</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Developer Info -->
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">Developer</h4>
+                    <div class="space-y-2 text-slate-400 text-sm">
+                        <p class="font-semibold text-white">Naeem</p>
+                        <p>Department of Computer Science and Engineering</p>
+                        <p>University of Barisal</p>
+                        <div class="flex items-center space-x-2 mt-3">
+                            <a href="tel:01623094662" class="text-violet-400 hover:text-violet-300 transition-colors">
+                                📞 01623094662
+                            </a>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <a href="mailto:naeem.cse7.bu@gmail.com" class="text-violet-400 hover:text-violet-300 transition-colors">
+                                ✉️ naeem.cse7.bu@gmail.com
+                            </a>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                                <a href="https://www.facebook.com/AreFin1Naeem/" target="_blank" class="text-violet-400 hover:text-violet-300 transition-colors">
+                                📘 Facebook
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-800 pt-8 text-center">
+        <!--#include file="footer.html" -->
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuBtn.querySelector('svg');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+            } else {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
+            }
+        });
+    </script>
+</body>
+</html>

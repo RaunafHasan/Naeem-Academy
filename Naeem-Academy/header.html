@@ -1,0 +1,52 @@
+<!-- Header Start -->
+<nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg bg-slate-950/80 border-b border-violet-500/20">
+    <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center">
+                    <span class="text-white font-bold text-xl sm:text-2xl">N</span>
+                </div>
+                <h1 class="text-xl sm:text-2xl font-bold text-white logo-text">Naeem Academy</h1>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-white p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="text-violet-400 font-semibold nav-link">Home</a>
+                <a href="html.html" class="text-slate-300 hover:text-cyan-400 transition-colors nav-link">HTML</a>
+                <a href="examples.html" class="text-cyan-400 hover:text-cyan-300 transition-colors nav-link">HTML Examples</a>
+                <a href="c-programming.html" class="text-slate-300 hover:text-emerald-400 transition-colors nav-link">C Programming</a>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden mt-4 pb-2 border-t border-slate-800 pt-4">
+            <div class="flex flex-col space-y-3">
+                <a href="index.html" class="text-violet-400 font-semibold">Home</a>
+                <a href="html.html" class="text-slate-300 hover:text-cyan-400 transition-colors">HTML</a>
+                <a href="examples.html" class="text-cyan-400 hover:text-cyan-300 transition-colors">HTML Examples</a>
+                <a href="c-programming.html" class="text-slate-300 hover:text-emerald-400 transition-colors">C Programming</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<script>
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuBtn.querySelector('svg');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+            } else {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
+            }
+        });
+    }
+</script>
+<!-- Header End -->

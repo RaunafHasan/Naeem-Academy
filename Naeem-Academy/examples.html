@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML উদাহরণ ও সমাধান - HTML Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .example-card {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid #334155;
+            transition: all 0.3s ease;
+        }
+        .example-card:hover {
+            border-color: #22d3ee;
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.1);
+        }
+        .solution-box {
+            background: #0f172a;
+            border: 1px solid #1e40af;
+        }
+        .output-box {
+            background: #1e293b;
+            border: 1px solid #334155;
+        }
+        .code-block {
+            background: #020617;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .toggle-btn {
+            cursor: pointer;
+            user-select: none;
+        }
+        table.demo-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        table.demo-table th, table.demo-table td {
+            border: 1px solid #64748b;
+            padding: 10px;
+            text-align: center;
+        }
+        table.demo-table th {
+            background: #334155;
+            font-weight: bold;
+        }
+        .category-section {
+            scroll-margin-top: 100px;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-white">
+    <!--#include file="header.html" -->
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-16">
+        <div class="container mx-auto px-6">
+            <!-- Hero Section -->
+            <div class="text-center lg:text-left mb-12">
+                <h2 class="text-5xl font-black text-white mb-4">
+                    📚 HTML উদাহরণ ও সমাধান
+                </h2>
+                <p class="text-xl text-slate-400 max-w-2xl mx-auto lg:ml-0 lg:mr-0">
+                    বিভিন্ন HTML ট্যাগের উদাহরণ এবং তাদের সমাধান দেখো এবং শেখো
+                </p>
+            </div>
+
+            <!-- Quick Navigation -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <a href="#basic" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-cyan-500 hover:text-white transition-all">📁 Basic Structure</a>
+                <a href="#text" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-cyan-500 hover:text-white transition-all">✏️ Text Formatting</a>
+                <a href="#list" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-cyan-500 hover:text-white transition-all">📋 Lists</a>
+                <a href="#link" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-cyan-500 hover:text-white transition-all">🔗 Links & Images</a>
+                <a href="#table" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-cyan-500 hover:text-white transition-all">📊 Tables</a>
+                <a href="#form" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-cyan-500 hover:text-white transition-all">📝 Forms</a>
+            </div>
+
+            <!-- ==================== BASIC STRUCTURE ==================== -->
+            <section id="basic" class="category-section mb-16">
+                <h3 class="text-3xl font-bold text-cyan-400 mb-8 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-cyan-500 rounded-lg flex items-center justify-center text-white">📁</span>
+                    Basic Structure উদাহরণ
+                </h3>
+
+                <!-- Example 1 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ১: সম্পূর্ণ HTML ডকুমেন্ট তৈরি করো</h4>
+                    <p class="text-slate-400 mb-4">একটি HTML পেজ বানাও যেখানে title হবে "আমার প্রথম ওয়েবসাইট" এবং body তে একটি heading ও paragraph থাকবে।</p>
+                    
+                    <div class="toggle-btn text-cyan-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="bn"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;আমার প্রথম ওয়েবসাইট&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;স্বাগতম!&lt;/h1&gt;
+    &lt;p&gt;এটি আমার প্রথম ওয়েবসাইট।&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <h1 style="font-size: 1.5em; font-weight: bold; margin-bottom: 8px;">স্বাগতম!</h1>
+                            <p>এটি আমার প্রথম ওয়েবসাইট।</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Practice Card: Basic Structure -->
+            <div class="example-card rounded-2xl p-6 mb-6 border-2 border-emerald-500/40">
+                <h4 class="text-xl font-bold text-emerald-400 mb-2">Practice</h4>
+                <ul class="list-disc pl-6 text-slate-300">
+                    <li>“My School” নামে একটি basic webpage বানাও (html, head, title, body, title tag, comment, br, hr)</li>
+                </ul>
+            </div>
+
+            <!-- ==================== TEXT FORMATTING ==================== -->
+            <section id="text" class="category-section mb-16">
+                <h3 class="text-3xl font-bold text-emerald-400 mb-8 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center text-white">✏️</span>
+                    Text Formatting উদাহরণ
+                </h3>
+
+                <!-- Example 1 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ১: Bold, Italic, Underline একসাথে</h4>
+                    <p class="text-slate-400 mb-4">একটি বাক্য লেখো যেখানে কিছু শব্দ bold, কিছু italic এবং কিছু underline থাকবে।</p>
+                    
+                    <div class="toggle-btn text-cyan-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>&lt;p&gt;
+    আমি &lt;b&gt;বাংলাদেশ&lt;/b&gt; এর একজন নাগরিক।
+    আমার প্রিয় বই &lt;i&gt;"পথের পাঁচালী"&lt;/i&gt;।
+    এটি খুবই &lt;u&gt;গুরুত্বপূর্ণ&lt;/u&gt; বই।
+&lt;/p&gt;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <p>
+                                আমি <b>বাংলাদেশ</b> এর একজন নাগরিক।
+                                আমার প্রিয় বই <i>"পথের পাঁচালী"</i>।
+                                এটি খুবই <u>গুরুত্বপূর্ণ</u> বই।
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 2 - Sub & Sup -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ২: রাসায়নিক সমীকরণ ও গাণিতিক সূত্র</h4>
+                    <p class="text-slate-400 mb-4">সালফিউরিক এসিড, পানি এবং পিথাগোরাসের সূত্র লেখো।</p>
+                    
+                    <div class="toggle-btn text-cyan-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>&lt;!-- রাসায়নিক সূত্র --&gt;
+&lt;p&gt;পানির সূত্র: H&lt;sub&gt;2&lt;/sub&gt;O&lt;/p&gt;
+&lt;p&gt;সালফিউরিক এসিড: H&lt;sub&gt;2&lt;/sub&gt;SO&lt;sub&gt;4&lt;/sub&gt;&lt;/p&gt;
+&lt;p&gt;কার্বন ডাই অক্সাইড: CO&lt;sub&gt;2&lt;/sub&gt;&lt;/p&gt;
+
+&lt;!-- গাণিতিক সূত্র --&gt;
+&lt;p&gt;পিথাগোরাস: a&lt;sup&gt;2&lt;/sup&gt; + b&lt;sup&gt;2&lt;/sup&gt; = c&lt;sup&gt;2&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;বর্গ সূত্র: (a+b)&lt;sup&gt;2&lt;/sup&gt; = a&lt;sup&gt;2&lt;/sup&gt; + 2ab + b&lt;sup&gt;2&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;ঘন: 2&lt;sup&gt;3&lt;/sup&gt; = 8&lt;/p&gt;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <p>পানির সূত্র: H<sub>2</sub>O</p>
+                            <p>সালফিউরিক এসিড: H<sub>2</sub>SO<sub>4</sub></p>
+                            <p>কার্বন ডাই অক্সাইড: CO<sub>2</sub></p>
+                            <br>
+                            <p>পিথাগোরাস: a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup></p>
+                            <p>বর্গ সূত্র: (a+b)<sup>2</sup> = a<sup>2</sup> + 2ab + b<sup>2</sup></p>
+                            <p>ঘন: 2<sup>3</sup> = 8</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 3 - Headings -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ৩: সব Heading ব্যবহার করো</h4>
+                    <p class="text-slate-400 mb-4">h1 থেকে h6 পর্যন্ত সব heading দিয়ে একটি article এর structure তৈরি করো।</p>
+                    
+                    <div class="toggle-btn text-cyan-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>&lt;h1&gt;বাংলাদেশের ইতিহাস&lt;/h1&gt;
+&lt;h2&gt;প্রাচীন যুগ&lt;/h2&gt;
+&lt;h3&gt;মৌর্য সাম্রাজ্য&lt;/h3&gt;
+&lt;h4&gt;অশোকের শাসন&lt;/h4&gt;
+&lt;h5&gt;বৌদ্ধ ধর্মের প্রসার&lt;/h5&gt;
+&lt;h6&gt;ধর্মীয় স্থাপনা&lt;/h6&gt;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <h1 style="font-size: 2em; font-weight: bold;">বাংলাদেশের ইতিহাস</h1>
+                            <h2 style="font-size: 1.5em; font-weight: bold;">প্রাচীন যুগ</h2>
+                            <h3 style="font-size: 1.17em; font-weight: bold;">মৌর্য সাম্রাজ্য</h3>
+                            <h4 style="font-size: 1em; font-weight: bold;">অশোকের শাসন</h4>
+                            <h5 style="font-size: 0.83em; font-weight: bold;">বৌদ্ধ ধর্মের প্রসার</h5>
+                            <h6 style="font-size: 0.67em; font-weight: bold;">ধর্মীয় স্থাপনা</h6>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Practice Card: Text Formatting -->
+            <div class="example-card rounded-2xl p-6 mb-6 border-2 border-emerald-500/40">
+                <h4 class="text-xl font-bold text-emerald-400 mb-2">Practice</h4>
+                <ul class="list-disc pl-6 text-slate-300">
+                    <li>Chemistry formula (H₂O, a²+b²) সহ একটি page তৈরি করো</li>
+                </ul>
+            </div>
+
+            <!-- ==================== LISTS ==================== -->
+            <section id="list" class="category-section mb-16">
+                <h3 class="text-3xl font-bold text-purple-400 mb-8 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center text-white">📋</span>
+                    List উদাহরণ
+                </h3>
+
+                <!-- Example 1 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ১: Nested List (List এর ভিতর List)</h4>
+                    <p class="text-slate-400 mb-4">বাংলাদেশের বিভাগ এবং তাদের জেলা দিয়ে nested list বানাও।</p>
+                    
+                    <div class="toggle-btn text-cyan-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>&lt;h3&gt;বাংলাদেশের বিভাগ ও জেলা&lt;/h3&gt;
+&lt;ul&gt;
+    &lt;li&gt;ঢাকা বিভাগ
+        &lt;ul type="circle"&gt;
+            &lt;li&gt;ঢাকা&lt;/li&gt;
+            &lt;li&gt;গাজীপুর&lt;/li&gt;
+            &lt;li&gt;নারায়ণগঞ্জ&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;চট্টগ্রাম বিভাগ
+        &lt;ul type="circle"&gt;
+            &lt;li&gt;চট্টগ্রাম&lt;/li&gt;
+            &lt;li&gt;কক্সবাজার&lt;/li&gt;
+            &lt;li&gt;রাঙামাটি&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;রাজশাহী বিভাগ
+        &lt;ul type="circle"&gt;
+            &lt;li&gt;রাজশাহী&lt;/li&gt;
+            &lt;li&gt;বগুড়া&lt;/li&gt;
+            &lt;li&gt;পাবনা&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <h3 style="font-weight: bold; margin-bottom: 8px;">বাংলাদেশের বিভাগ ও জেলা</h3>
+                            <ul style="list-style-type: disc; padding-left: 25px;">
+                                <li>ঢাকা বিভাগ
+                                    <ul style="list-style-type: circle; padding-left: 25px;">
+                                        <li>ঢাকা</li>
+                                        <li>গাজীপুর</li>
+                                        <li>নারায়ণগঞ্জ</li>
+                                    </ul>
+                                </li>
+                                <li>চট্টগ্রাম বিভাগ
+                                    <ul style="list-style-type: circle; padding-left: 25px;">
+                                        <li>চট্টগ্রাম</li>
+                                        <li>কক্সবাজার</li>
+                                        <li>রাঙামাটি</li>
+                                    </ul>
+                                </li>
+                                <li>রাজশাহী বিভাগ
+                                    <ul style="list-style-type: circle; padding-left: 25px;">
+                                        <li>রাজশাহী</li>
+                                        <li>বগুড়া</li>
+                                        <li>পাবনা</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 2 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ২: বিভিন্ন Type এর Ordered List</h4>
+                    <p class="text-slate-400 mb-4">A, a, I, i, 1 সব type দিয়ে ordered list বানাও।</p>
+                    
+                    <div class="toggle-btn text-cyan-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>&lt;h4&gt;পরীক্ষার প্রস্তুতি&lt;/h4&gt;
+
+&lt;!-- Capital Letters --&gt;
+&lt;ol type="A"&gt;
+    &lt;li&gt;বাংলা&lt;/li&gt;
+    &lt;li&gt;ইংরেজি&lt;/li&gt;
+    &lt;li&gt;গণিত&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- Roman Numerals --&gt;
+&lt;ol type="I"&gt;
+    &lt;li&gt;অধ্যায় ১&lt;/li&gt;
+    &lt;li&gt;অধ্যায় ২&lt;/li&gt;
+    &lt;li&gt;অধ্যায় ৩&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- Start from 5 --&gt;
+&lt;ol start="5"&gt;
+    &lt;li&gt;পঞ্চম আইটেম&lt;/li&gt;
+    &lt;li&gt;ষষ্ঠ আইটেম&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <h4 style="font-weight: bold; margin-bottom: 8px;">পরীক্ষার প্রস্তুতি</h4>
+                            <p class="text-slate-400 text-sm">Capital Letters (A, B, C):</p>
+                            <ol style="list-style-type: upper-alpha; padding-left: 25px;">
+                                <li>বাংলা</li>
+                                <li>ইংরেজি</li>
+                                <li>গণিত</li>
+                            </ol>
+                            <p class="text-slate-400 text-sm mt-2">Roman Numerals (I, II, III):</p>
+                            <ol style="list-style-type: upper-roman; padding-left: 25px;">
+                                <li>অধ্যায় ১</li>
+                                <li>অধ্যায় ২</li>
+                                <li>অধ্যায় ৩</li>
+                            </ol>
+                            <p class="text-slate-400 text-sm mt-2">Start from 5:</p>
+                            <ol start="5" style="list-style-type: decimal; padding-left: 25px;">
+                                <li>পঞ্চম আইটেম</li>
+                                <li>ষষ্ঠ আইটেম</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Practice Card: Lists -->
+            <div class="example-card rounded-2xl p-6 mb-6 border-2 border-emerald-500/40">
+                <h4 class="text-xl font-bold text-emerald-400 mb-2">Practice</h4>
+                <ul class="list-disc pl-6 text-slate-300">
+                    <li>Daily routine list page (ordered, unordered, nested, definition list)</li>
+                </ul>
+            </div>
+
+            <!-- ==================== LINKS & IMAGES ==================== -->
+            <section id="link" class="category-section mb-16">
+                <h3 class="text-3xl font-bold text-orange-400 mb-8 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center text-white">🔗</span>
+                    Link & Image উদাহরণ
+                </h3>
+
+                <!-- Example 1 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ১: বিভিন্ন ধরনের Link</h4>
+                    <p class="text-slate-400 mb-4">External link, Email link, Phone link এবং Download link বানাও।</p>
+                    
+                    <div class="toggle-btn text-cyan-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>&lt;h4&gt;যোগাযোগ করুন&lt;/h4&gt;
+
+&lt;!-- External Link (New Tab) --&gt;
+&lt;p&gt;
+    আমাদের ওয়েবসাইট: 
+    &lt;a href="https://google.com" target="_blank" title="গুগলে যান"&gt;
+        Google খুলুন ↗
+    &lt;/a&gt;
+&lt;/p&gt;
+
+&lt;!-- Email Link --&gt;
+&lt;p&gt;
+    ইমেইল: 
+    &lt;a href="mailto:info@school.com"&gt;
+        📧 info@school.com
+    &lt;/a&gt;
+&lt;/p&gt;
+
+&lt;!-- Phone Link --&gt;
+&lt;p&gt;
+    ফোন: 
+    &lt;a href="tel:+8801712345678"&gt;
+        📞 +880 1712-345678
+    &lt;/a&gt;
+&lt;/p&gt;
+
+&lt;!-- Download Link --&gt;
+&lt;p&gt;
+    &lt;a href="syllabus.pdf" download="syllabus-2024"&gt;
+        📥 সিলেবাস ডাউনলোড করুন
+    &lt;/a&gt;
+&lt;/p&gt;
+
+&lt;!-- Internal Section Jump --&gt;
+&lt;p&gt;
+    &lt;a href="#footer"&gt;⬇ নিচে যান&lt;/a&gt;
+&lt;/p&gt;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <h4 style="font-weight: bold; margin-bottom: 8px;">যোগাযোগ করুন</h4>
+                            <p class="mb-2">আমাদের ওয়েবসাইট: <a href="https://google.com" target="_blank" class="text-cyan-400 underline">Google খুলুন ↗</a></p>
+                            <p class="mb-2">ইমেইল: <a href="mailto:info@school.com" class="text-cyan-400 underline">📧 info@school.com</a></p>
+                            <p class="mb-2">ফোন: <a href="tel:+8801712345678" class="text-cyan-400 underline">📞 +880 1712-345678</a></p>
+                            <p class="mb-2"><a href="#" class="text-cyan-400 underline">📥 সিলেবাস ডাউনলোড করুন</a></p>
+                            <p><a href="#footer" class="text-cyan-400 underline">⬇ নিচে যান</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 2 - Image -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ২: Image এর সব Attribute</h4>
+                    <p class="text-slate-400 mb-4">src, alt, width, height, border, title সব attribute ব্যবহার করে image দেখাও।</p>
+                    
+                    <div class="toggle-btn text-cyan-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>&lt;!-- Basic Image --&gt;
+&lt;img src="flower.jpg" alt="সুন্দর ফুল"&gt;
+
+&lt;!-- With Size --&gt;
+&lt;img src="logo.png" alt="কোম্পানি লোগো" width="200" height="100"&gt;
+
+&lt;!-- With Border --&gt;
+&lt;img src="photo.jpg" alt="আমার ছবি" width="150" border="2"&gt;
+
+&lt;!-- All Attributes --&gt;
+&lt;img 
+    src="profile.jpg" 
+    alt="প্রোফাইল ছবি" 
+    width="250" 
+    height="200" 
+    border="3" 
+    title="মাউস রাখলে এটি দেখাবে"&gt;
+
+&lt;!-- Full Width --&gt;
+&lt;img src="banner.jpg" alt="ব্যানার" width="100%"&gt;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT (প্রদর্শন):</div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-slate-700 p-4 rounded text-center">
+                                    <div class="text-4xl mb-2">🖼️</div>
+                                    <div class="text-xs text-slate-400">Basic Image<br>src + alt</div>
+                                </div>
+                                <div class="bg-slate-700 p-4 rounded text-center">
+                                    <div class="w-20 h-10 bg-slate-600 mx-auto flex items-center justify-center text-xs">200×100</div>
+                                    <div class="text-xs text-slate-400 mt-2">width + height</div>
+                                </div>
+                                <div class="bg-slate-700 p-4 rounded text-center">
+                                    <div class="w-16 h-16 bg-slate-600 mx-auto border-2 border-cyan-400 flex items-center justify-center">🖼️</div>
+                                    <div class="text-xs text-slate-400 mt-2">border="2"</div>
+                                </div>
+                                <div class="bg-slate-700 p-4 rounded text-center">
+                                    <div class="w-full h-8 bg-slate-600 flex items-center justify-center text-xs">100% width</div>
+                                    <div class="text-xs text-slate-400 mt-2">Full Width Banner</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Practice Card: Links & Images -->
+            <div class="example-card rounded-2xl p-6 mb-6 border-2 border-emerald-500/40">
+                <h4 class="text-xl font-bold text-emerald-400 mb-2">Practice</h4>
+                <ul class="list-disc pl-6 text-slate-300">
+                    <li>Google + Facebook link সহ একটি page তৈরি করো (external, internal, new tab, email link)</li>
+                    <li>Profile page with image (image add, width/height, alt, clickable image link)</li>
+                </ul>
+            </div>
+
+            <!-- ==================== TABLES ==================== -->
+            <section id="table" class="category-section mb-16">
+                <h3 class="text-3xl font-bold text-pink-400 mb-8 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-pink-500 rounded-lg flex items-center justify-center text-white">📊</span>
+                    Table উদাহরণ (Colspan ও Rowspan সহ)
+                </h3>
+
+                <!-- Example 1 - Basic Table -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ১: সাধারণ টেবিল (ছাত্রদের নম্বর)</h4>
+                    <p class="text-slate-400 mb-4">border, cellpadding, cellspacing দিয়ে একটি সাধারণ result table বানাও।</p>
+                    
+                    <div class="toggle-btn text-cyan-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>&lt;table border="1" cellpadding="10" cellspacing="0"&gt;
+    &lt;tr&gt;
+        &lt;th&gt;নাম&lt;/th&gt;
+        &lt;th&gt;বাংলা&lt;/th&gt;
+        &lt;th&gt;ইংরেজি&lt;/th&gt;
+        &lt;th&gt;গণিত&lt;/th&gt;
+        &lt;th&gt;মোট&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;রহিম&lt;/td&gt;
+        &lt;td&gt;৮৫&lt;/td&gt;
+        &lt;td&gt;৭৮&lt;/td&gt;
+        &lt;td&gt;৯২&lt;/td&gt;
+        &lt;td&gt;২৫৫&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;করিম&lt;/td&gt;
+        &lt;td&gt;৯০&lt;/td&gt;
+        &lt;td&gt;৮২&lt;/td&gt;
+        &lt;td&gt;৮৮&lt;/td&gt;
+        &lt;td&gt;২৬০&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;জামাল&lt;/td&gt;
+        &lt;td&gt;৭৫&lt;/td&gt;
+        &lt;td&gt;৮৮&lt;/td&gt;
+        &lt;td&gt;৯৫&lt;/td&gt;
+        &lt;td&gt;২৫৮&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <table class="demo-table">
+                                <tr>
+                                    <th>নাম</th>
+                                    <th>বাংলা</th>
+                                    <th>ইংরেজি</th>
+                                    <th>গণিত</th>
+                                    <th>মোট</th>
+                                </tr>
+                                <tr>
+                                    <td>রহিম</td>
+                                    <td>৮৫</td>
+                                    <td>৭৮</td>
+                                    <td>৯২</td>
+                                    <td>২৫৫</td>
+                                </tr>
+                                <tr>
+                                    <td>করিম</td>
+                                    <td>৯০</td>
+                                    <td>৮২</td>
+                                    <td>৮৮</td>
+                                    <td>২৬০</td>
+                                </tr>
+                                <tr>
+                                    <td>জামাল</td>
+                                    <td>৭৫</td>
+                                    <td>৮৮</td>
+                                    <td>৯৫</td>
+                                    <td>২৫৮</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 2 - Colspan -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ২: Colspan (একাধিক কলাম জোড়া লাগানো)</h4>
+                    <p class="text-slate-400 mb-4">colspan দিয়ে header বা footer একাধিক কলামে বিস্তৃত করো।</p>
+                    
+                    <div class="toggle-btn text-cyan-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>&lt;table border="1" cellpadding="10" cellspacing="0"&gt;
+    &lt;!-- Header spanning 3 columns --&gt;
+    &lt;tr&gt;
+        &lt;th colspan="3"&gt;📚 পরীক্ষার ফলাফল ২০২৪&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;th&gt;নাম&lt;/th&gt;
+        &lt;th&gt;বিষয়&lt;/th&gt;
+        &lt;th&gt;নম্বর&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;রহিম&lt;/td&gt;
+        &lt;td&gt;বাংলা&lt;/td&gt;
+        &lt;td&gt;৮৫&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;করিম&lt;/td&gt;
+        &lt;td&gt;গণিত&lt;/td&gt;
+        &lt;td&gt;৯২&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;!-- Footer spanning 2 columns --&gt;
+    &lt;tr&gt;
+        &lt;td colspan="2"&gt;&lt;b&gt;মোট ছাত্র&lt;/b&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;b&gt;২ জন&lt;/b&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <table class="demo-table">
+                                <tr>
+                                    <th colspan="3" style="background: linear-gradient(135deg, #334155, #1e293b);">📚 পরীক্ষার ফলাফল ২০২৪</th>
+                                </tr>
+                                <tr>
+                                    <th>নাম</th>
+                                    <th>বিষয়</th>
+                                    <th>নম্বর</th>
+                                </tr>
+                                <tr>
+                                    <td>রহিম</td>
+                                    <td>বাংলা</td>
+                                    <td>৮৫</td>
+                                </tr>
+                                <tr>
+                                    <td>করিম</td>
+                                    <td>গণিত</td>
+                                    <td>৯২</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b>মোট ছাত্র</b></td>
+                                    <td><b>২ জন</b></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 3 - Rowspan -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ৩: Rowspan (একাধিক সারি জোড়া লাগানো)</h4>
+                    <p class="text-slate-400 mb-4">rowspan দিয়ে একটি সেল একাধিক সারিতে বিস্তৃত করো।</p>
+                    
+                    <div class="toggle-btn text-cyan-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>&lt;table border="1" cellpadding="10" cellspacing="0"&gt;
+    &lt;tr&gt;
+        &lt;th&gt;বিভাগ&lt;/th&gt;
+        &lt;th&gt;জেলা&lt;/th&gt;
+        &lt;th&gt;জনসংখ্যা&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;!-- rowspan="3" means this cell spans 3 rows --&gt;
+        &lt;td rowspan="3"&gt;&lt;b&gt;ঢাকা&lt;/b&gt;&lt;/td&gt;
+        &lt;td&gt;ঢাকা&lt;/td&gt;
+        &lt;td&gt;২১০ লক্ষ&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;গাজীপুর&lt;/td&gt;
+        &lt;td&gt;৫০ লক্ষ&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;নারায়ণগঞ্জ&lt;/td&gt;
+        &lt;td&gt;৩০ লক্ষ&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td rowspan="2"&gt;&lt;b&gt;চট্টগ্রাম&lt;/b&gt;&lt;/td&gt;
+        &lt;td&gt;চট্টগ্রাম&lt;/td&gt;
+        &lt;td&gt;৮০ লক্ষ&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;কক্সবাজার&lt;/td&gt;
+        &lt;td&gt;২৫ লক্ষ&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <table class="demo-table">
+                                <tr>
+                                    <th>বিভাগ</th>
+                                    <th>জেলা</th>
+                                    <th>জনসংখ্যা</th>
+                                </tr>
+                                <tr>
+                                    <td rowspan="3" style="background: #1e40af;"><b>ঢাকা</b></td>
+                                    <td>ঢাকা</td>
+                                    <td>২১০ লক্ষ</td>
+                                </tr>
+                                <tr>
+                                    <td>গাজীপুর</td>
+                                    <td>৫০ লক্ষ</td>
+                                </tr>
+                                <tr>
+                                    <td>নারায়ণগঞ্জ</td>
+                                    <td>৩০ লক্ষ</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2" style="background: #065f46;"><b>চট্টগ্রাম</b></td>
+                                    <td>চট্টগ্রাম</td>
+                                    <td>৮০ লক্ষ</td>
+                                </tr>
+                                <tr>
+                                    <td>কক্সবাজার</td>
+                                    <td>২৫ লক্ষ</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 4 - Complex Colspan + Rowspan -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ৪: Complex Structure (Colspan + Rowspan একসাথে)</h4>
+                    <p class="text-slate-400 mb-4">colspan এবং rowspan দুটোই ব্যবহার করে একটি জটিল টাইম টেবিল বানাও।</p>
+                    
+                    <div class="toggle-btn text-cyan-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>&lt;table border="1" cellpadding="10" cellspacing="0"&gt;
+    &lt;!-- Main Title --&gt;
+    &lt;tr&gt;
+        &lt;th colspan="5"&gt;🏫 ক্লাস রুটিন - দশম শ্রেণি&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;!-- Sub Headers --&gt;
+    &lt;tr&gt;
+        &lt;th&gt;সময়&lt;/th&gt;
+        &lt;th&gt;শনিবার&lt;/th&gt;
+        &lt;th&gt;রবিবার&lt;/th&gt;
+        &lt;th&gt;সোমবার&lt;/th&gt;
+        &lt;th&gt;মঙ্গলবার&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;৯:০০ - ৯:৪৫&lt;/td&gt;
+        &lt;td&gt;বাংলা&lt;/td&gt;
+        &lt;td&gt;ইংরেজি&lt;/td&gt;
+        &lt;td&gt;গণিত&lt;/td&gt;
+        &lt;td&gt;বিজ্ঞান&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;৯:৪৫ - ১০:৩০&lt;/td&gt;
+        &lt;td&gt;ইংরেজি&lt;/td&gt;
+        &lt;td rowspan="2"&gt;🧪 ল্যাব&lt;/td&gt;
+        &lt;td&gt;বাংলা&lt;/td&gt;
+        &lt;td&gt;গণিত&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;১০:৩০ - ১১:১৫&lt;/td&gt;
+        &lt;td&gt;গণিত&lt;/td&gt;
+        &lt;td&gt;বিজ্ঞান&lt;/td&gt;
+        &lt;td&gt;ইংরেজি&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;!-- Break --&gt;
+    &lt;tr&gt;
+        &lt;td colspan="5" style="text-align:center"&gt;🍔 টিফিন বিরতি (১১:১৫ - ১১:৩০)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;১১:৩০ - ১২:১৫&lt;/td&gt;
+        &lt;td colspan="2"&gt;🎨 চারু ও কারুকলা&lt;/td&gt;
+        &lt;td colspan="2"&gt;💻 কম্পিউটার&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <table class="demo-table">
+                                <tr>
+                                    <th colspan="5" style="background: linear-gradient(135deg, #7c3aed, #db2777);">🏫 ক্লাস রুটিন - দশম শ্রেণি</th>
+                                </tr>
+                                <tr>
+                                    <th>সময়</th>
+                                    <th>শনিবার</th>
+                                    <th>রবিবার</th>
+                                    <th>সোমবার</th>
+                                    <th>মঙ্গলবার</th>
+                                </tr>
+                                <tr>
+                                    <td>৯:০০ - ৯:৪৫</td>
+                                    <td>বাংলা</td>
+                                    <td>ইংরেজি</td>
+                                    <td>গণিত</td>
+                                    <td>বিজ্ঞান</td>
+                                </tr>
+                                <tr>
+                                    <td>৯:৪৫ - ১০:৩০</td>
+                                    <td>ইংরেজি</td>
+                                    <td rowspan="2" style="background: #065f46;">🧪 ল্যাব</td>
+                                    <td>বাংলা</td>
+                                    <td>গণিত</td>
+                                </tr>
+                                <tr>
+                                    <td>১০:৩০ - ১১:১৫</td>
+                                    <td>গণিত</td>
+                                    <td>বিজ্ঞান</td>
+                                    <td>ইংরেজি</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" style="background: #854d0e; text-align: center;">🍔 টিফিন বিরতি (১১:১৫ - ১১:৩০)</td>
+                                </tr>
+                                <tr>
+                                    <td>১১:৩০ - ১২:১৫</td>
+                                    <td colspan="2" style="background: #1e40af;">🎨 চারু ও কারুকলা</td>
+                                    <td colspan="2" style="background: #0f766e;">💻 কম্পিউটার</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 5 - Report Card -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ৫: রেজাল্ট কার্ড (Very Complex)</h4>
+                    <p class="text-slate-400 mb-4">একটি সম্পূর্ণ রেজাল্ট কার্ড বানাও যেখানে colspan ও rowspan দুটোই আছে।</p>
+                    
+                    <div class="toggle-btn text-cyan-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>&lt;table border="1" cellpadding="8" cellspacing="0"&gt;
+    &lt;!-- School Name --&gt;
+    &lt;tr&gt;
+        &lt;th colspan="6"&gt;📜 বাংলাদেশ উচ্চ বিদ্যালয়&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;th colspan="6"&gt;বার্ষিক পরীক্ষা - ২০২৪&lt;/th&gt;
+    &lt;/tr&gt;
+    
+    &lt;!-- Student Info --&gt;
+    &lt;tr&gt;
+        &lt;td colspan="3"&gt;নাম: মোঃ রহিম উদ্দিন&lt;/td&gt;
+        &lt;td colspan="3"&gt;রোল: ০১&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td colspan="3"&gt;শ্রেণি: দশম&lt;/td&gt;
+        &lt;td colspan="3"&gt;বিভাগ: বিজ্ঞান&lt;/td&gt;
+    &lt;/tr&gt;
+    
+    &lt;!-- Subject Headers --&gt;
+    &lt;tr&gt;
+        &lt;th rowspan="2"&gt;বিষয়&lt;/th&gt;
+        &lt;th colspan="2"&gt;লিখিত&lt;/th&gt;
+        &lt;th colspan="2"&gt;ব্যবহারিক&lt;/th&gt;
+        &lt;th rowspan="2"&gt;মোট&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;th&gt;পূর্ণমান&lt;/th&gt;
+        &lt;th&gt;প্রাপ্ত&lt;/th&gt;
+        &lt;th&gt;পূর্ণমান&lt;/th&gt;
+        &lt;th&gt;প্রাপ্ত&lt;/th&gt;
+    &lt;/tr&gt;
+    
+    &lt;!-- Subjects --&gt;
+    &lt;tr&gt;
+        &lt;td&gt;বাংলা&lt;/td&gt;
+        &lt;td&gt;১০০&lt;/td&gt;
+        &lt;td&gt;৮৫&lt;/td&gt;
+        &lt;td&gt;-&lt;/td&gt;
+        &lt;td&gt;-&lt;/td&gt;
+        &lt;td&gt;৮৫&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;ইংরেজি&lt;/td&gt;
+        &lt;td&gt;১০০&lt;/td&gt;
+        &lt;td&gt;৭৮&lt;/td&gt;
+        &lt;td&gt;-&lt;/td&gt;
+        &lt;td&gt;-&lt;/td&gt;
+        &lt;td&gt;৭৮&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;গণিত&lt;/td&gt;
+        &lt;td&gt;১০০&lt;/td&gt;
+        &lt;td&gt;৯২&lt;/td&gt;
+        &lt;td&gt;-&lt;/td&gt;
+        &lt;td&gt;-&lt;/td&gt;
+        &lt;td&gt;৯২&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;পদার্থ বিজ্ঞান&lt;/td&gt;
+        &lt;td&gt;৭৫&lt;/td&gt;
+        &lt;td&gt;৬৮&lt;/td&gt;
+        &lt;td&gt;২৫&lt;/td&gt;
+        &lt;td&gt;২৩&lt;/td&gt;
+        &lt;td&gt;৯১&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;রসায়ন&lt;/td&gt;
+        &lt;td&gt;৭৫&lt;/td&gt;
+        &lt;td&gt;৭০&lt;/td&gt;
+        &lt;td&gt;২৫&lt;/td&gt;
+        &lt;td&gt;২২&lt;/td&gt;
+        &lt;td&gt;৯২&lt;/td&gt;
+    &lt;/tr&gt;
+    
+    &lt;!-- Total --&gt;
+    &lt;tr&gt;
+        &lt;th colspan="5"&gt;সর্বমোট&lt;/th&gt;
+        &lt;th&gt;৪৩৮&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td colspan="3"&gt;GPA: ৪.৫০&lt;/td&gt;
+        &lt;td colspan="3"&gt;ফলাফল: ✅ উত্তীর্ণ&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4 overflow-x-auto">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <table class="demo-table" style="min-width: 500px;">
+                                <tr>
+                                    <th colspan="6" style="background: linear-gradient(135deg, #1e40af, #7c3aed); font-size: 1.2em;">📜 বাংলাদেশ উচ্চ বিদ্যালয়</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="6" style="background: #334155;">বার্ষিক পরীক্ষা - ২০২৪</th>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">নাম: মোঃ রহিম উদ্দিন</td>
+                                    <td colspan="3">রোল: ০১</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">শ্রেণি: দশম</td>
+                                    <td colspan="3">বিভাগ: বিজ্ঞান</td>
+                                </tr>
+                                <tr>
+                                    <th rowspan="2" style="background: #334155;">বিষয়</th>
+                                    <th colspan="2" style="background: #334155;">লিখিত</th>
+                                    <th colspan="2" style="background: #334155;">ব্যবহারিক</th>
+                                    <th rowspan="2" style="background: #334155;">মোট</th>
+                                </tr>
+                                <tr>
+                                    <th style="background: #475569;">পূর্ণমান</th>
+                                    <th style="background: #475569;">প্রাপ্ত</th>
+                                    <th style="background: #475569;">পূর্ণমান</th>
+                                    <th style="background: #475569;">প্রাপ্ত</th>
+                                </tr>
+                                <tr>
+                                    <td>বাংলা</td>
+                                    <td>১০০</td>
+                                    <td style="color: #4ade80;">৮৫</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td style="font-weight: bold;">৮৫</td>
+                                </tr>
+                                <tr>
+                                    <td>ইংরেজি</td>
+                                    <td>১০০</td>
+                                    <td style="color: #4ade80;">৭৮</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td style="font-weight: bold;">৭৮</td>
+                                </tr>
+                                <tr>
+                                    <td>গণিত</td>
+                                    <td>১০০</td>
+                                    <td style="color: #4ade80;">৯২</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td style="font-weight: bold;">৯২</td>
+                                </tr>
+                                <tr>
+                                    <td>পদার্থ বিজ্ঞান</td>
+                                    <td>৭৫</td>
+                                    <td style="color: #4ade80;">৬৮</td>
+                                    <td>২৫</td>
+                                    <td style="color: #4ade80;">২৩</td>
+                                    <td style="font-weight: bold;">৯১</td>
+                                </tr>
+                                <tr>
+                                    <td>রসায়ন</td>
+                                    <td>৭৫</td>
+                                    <td style="color: #4ade80;">৭০</td>
+                                    <td>২৫</td>
+                                    <td style="color: #4ade80;">২২</td>
+                                    <td style="font-weight: bold;">৯২</td>
+                                </tr>
+                                <tr>
+                                    <th colspan="5" style="background: #334155;">সর্বমোট</th>
+                                    <th style="background: #065f46; font-size: 1.2em;">৪৩৮</th>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" style="background: #1e40af;">GPA: ৪.৫০</td>
+                                    <td colspan="3" style="background: #065f46;">ফলাফল: ✅ উত্তীর্ণ</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 6 - Invoice Table -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ৬: বিল/Invoice টেবিল</h4>
+                    <p class="text-slate-400 mb-4">একটি দোকানের বিল বানাও colspan দিয়ে।</p>
+                    
+                    <div class="toggle-btn text-cyan-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>&lt;table border="1" cellpadding="10" cellspacing="0"&gt;
+    &lt;tr&gt;
+        &lt;th colspan="4"&gt;🧾 জনতা স্টোর - বিল&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;th&gt;ক্রমিক&lt;/th&gt;
+        &lt;th&gt;পণ্যের নাম&lt;/th&gt;
+        &lt;th&gt;পরিমাণ&lt;/th&gt;
+        &lt;th&gt;মূল্য (৳)&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;১&lt;/td&gt;
+        &lt;td&gt;চাল (মিনিকেট)&lt;/td&gt;
+        &lt;td&gt;৫ কেজি&lt;/td&gt;
+        &lt;td&gt;৩৫০&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;২&lt;/td&gt;
+        &lt;td&gt;ডাল (মসুর)&lt;/td&gt;
+        &lt;td&gt;২ কেজি&lt;/td&gt;
+        &lt;td&gt;২৪০&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;৩&lt;/td&gt;
+        &lt;td&gt;তেল (সয়াবিন)&lt;/td&gt;
+        &lt;td&gt;১ লিটার&lt;/td&gt;
+        &lt;td&gt;১৮০&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;৪&lt;/td&gt;
+        &lt;td&gt;চিনি&lt;/td&gt;
+        &lt;td&gt;১ কেজি&lt;/td&gt;
+        &lt;td&gt;১২০&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;th colspan="3"&gt;মোট&lt;/th&gt;
+        &lt;th&gt;৳ ৮৯০&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td colspan="3"&gt;VAT (৫%)&lt;/td&gt;
+        &lt;td&gt;৳ ৪৫&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;th colspan="3"&gt;সর্বমোট&lt;/th&gt;
+        &lt;th&gt;৳ ৯৩৫&lt;/th&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <table class="demo-table">
+                                <tr>
+                                    <th colspan="4" style="background: linear-gradient(135deg, #065f46, #0f766e);">🧾 জনতা স্টোর - বিল</th>
+                                </tr>
+                                <tr>
+                                    <th>ক্রমিক</th>
+                                    <th>পণ্যের নাম</th>
+                                    <th>পরিমাণ</th>
+                                    <th>মূল্য (৳)</th>
+                                </tr>
+                                <tr>
+                                    <td>১</td>
+                                    <td>চাল (মিনিকেট)</td>
+                                    <td>৫ কেজি</td>
+                                    <td>৩৫০</td>
+                                </tr>
+                                <tr>
+                                    <td>২</td>
+                                    <td>ডাল (মসুর)</td>
+                                    <td>২ কেজি</td>
+                                    <td>২৪০</td>
+                                </tr>
+                                <tr>
+                                    <td>৩</td>
+                                    <td>তেল (সয়াবিন)</td>
+                                    <td>১ লিটার</td>
+                                    <td>১৮০</td>
+                                </tr>
+                                <tr>
+                                    <td>৪</td>
+                                    <td>চিনি</td>
+                                    <td>১ কেজি</td>
+                                    <td>১২০</td>
+                                </tr>
+                                <tr>
+                                    <th colspan="3" style="background: #334155;">মোট</th>
+                                    <th style="background: #334155;">৳ ৮৯০</th>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">VAT (৫%)</td>
+                                    <td>৳ ৪৫</td>
+                                </tr>
+                                <tr>
+                                    <th colspan="3" style="background: #065f46;">সর্বমোট</th>
+                                    <th style="background: #065f46; font-size: 1.2em;">৳ ৯৩৫</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Practice Card: Tables -->
+            <div class="example-card rounded-2xl p-6 mb-6 border-2 border-emerald-500/40">
+                <h4 class="text-xl font-bold text-emerald-400 mb-2">Practice</h4>
+                <ul class="list-disc pl-6 text-slate-300">
+                    <li>Student mark sheet table</li>
+                    <li>Class routine table</li>
+                </ul>
+            </div>
+
+            <!-- ==================== FORMS ==================== -->
+            <section id="form" class="category-section mb-16">
+                <h3 class="text-3xl font-bold text-rose-400 mb-8 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-rose-500 rounded-lg flex items-center justify-center text-white">📝</span>
+                    Form উদাহরণ
+                </h3>
+
+                <!-- Example 1 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ১: Registration Form</h4>
+                    <p class="text-slate-400 mb-4">একটি সাধারণ রেজিস্ট্রেশন ফর্ম বানাও।</p>
+                    
+                    <div class="toggle-btn text-cyan-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>&lt;form&gt;
+    &lt;h3&gt;📋 রেজিস্ট্রেশন ফর্ম&lt;/h3&gt;
+    
+    &lt;p&gt;
+        &lt;label&gt;নাম:&lt;/label&gt;&lt;br&gt;
+        &lt;input type="text" placeholder="আপনার নাম লিখুন" required&gt;
+    &lt;/p&gt;
+    
+    &lt;p&gt;
+        &lt;label&gt;ইমেইল:&lt;/label&gt;&lt;br&gt;
+        &lt;input type="email" placeholder="example@mail.com"&gt;
+    &lt;/p&gt;
+    
+    &lt;p&gt;
+        &lt;label&gt;পাসওয়ার্ড:&lt;/label&gt;&lt;br&gt;
+        &lt;input type="password" placeholder="পাসওয়ার্ড"&gt;
+    &lt;/p&gt;
+    
+    &lt;p&gt;
+        &lt;label&gt;জন্ম তারিখ:&lt;/label&gt;&lt;br&gt;
+        &lt;input type="date"&gt;
+    &lt;/p&gt;
+    
+    &lt;p&gt;
+        &lt;input type="submit" value="জমা দিন"&gt;
+        &lt;input type="reset" value="রিসেট"&gt;
+    &lt;/p&gt;
+&lt;/form&gt;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <form class="space-y-3">
+                                <h3 class="font-bold text-lg">📋 রেজিস্ট্রেশন ফর্ম</h3>
+                                <div>
+                                    <label class="text-slate-300">নাম:</label><br>
+                                    <input type="text" placeholder="আপনার নাম লিখুন" class="mt-1 px-3 py-2 bg-slate-700 border border-slate-600 rounded w-full">
+                                </div>
+                                <div>
+                                    <label class="text-slate-300">ইমেইল:</label><br>
+                                    <input type="email" placeholder="example@mail.com" class="mt-1 px-3 py-2 bg-slate-700 border border-slate-600 rounded w-full">
+                                </div>
+                                <div>
+                                    <label class="text-slate-300">পাসওয়ার্ড:</label><br>
+                                    <input type="password" placeholder="পাসওয়ার্ড" class="mt-1 px-3 py-2 bg-slate-700 border border-slate-600 rounded w-full">
+                                </div>
+                                <div>
+                                    <label class="text-slate-300">জন্ম তারিখ:</label><br>
+                                    <input type="date" class="mt-1 px-3 py-2 bg-slate-700 border border-slate-600 rounded">
+                                </div>
+                                <div class="flex gap-3">
+                                    <button type="button" class="px-4 py-2 bg-cyan-500 rounded font-semibold">জমা দিন</button>
+                                    <button type="button" class="px-4 py-2 bg-slate-600 rounded">রিসেট</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Practice Card: Forms -->
+            <div class="example-card rounded-2xl p-6 mb-6 border-2 border-emerald-500/40">
+                <h4 class="text-xl font-bold text-emerald-400 mb-2">Practice</h4>
+                <ul class="list-disc pl-6 text-slate-300">
+                    <li>Student registration form</li>
+                    <li>Login form</li>
+                </ul>
+            </div>
+
+        </div>
+    </main>
+
+    <!--#include file="footer.html" -->
+
+    <script>
+        function toggleSolution(btn) {
+            const solutionBox = btn.nextElementSibling;
+            if (solutionBox.classList.contains('hidden')) {
+                solutionBox.classList.remove('hidden');
+                btn.textContent = '▼ সমাধান লুকান';
+            } else {
+                solutionBox.classList.add('hidden');
+                btn.textContent = '▶ সমাধান দেখুন';
+            }
+        }
+    </script>
+</body>
+</html>

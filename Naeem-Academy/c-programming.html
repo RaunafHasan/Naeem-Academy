@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C Programming - Naeem Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;600;800&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-950">
+    <!--#include file="header.html" -->
+
+    <!-- Main Content -->
+    <main class="pt-20 sm:pt-24 pb-12 sm:pb-16">
+        <div class="container mx-auto px-4 sm:px-6">
+            <!-- Hero Section -->
+            <div class="text-center mb-10 sm:mb-16 hero-section">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-3 sm:mb-4 hero-title leading-tight">
+                    Master C Programming
+                    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-green-600 text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-2">From Fundamentals to Excellence</span>
+                </h2>
+                <p class="text-base sm:text-lg md:text-xl text-slate-400 max-w-2xl mx-auto px-2" style="font-family: 'Noto Sans Bengali', sans-serif;">
+                    C প্রোগ্রামিং শিখুন ইন্টারেক্টিভ উদাহরণ এবং হাতে-কলমে অনুশীলনের মাধ্যমে।
+                </p>
+            </div>
+
+            <!-- Concept Grid -->
+            <div id="concepts" class="mb-10 sm:mb-12">
+                <div id="conceptGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+                    <!-- Cards will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Examples Section -->
+            <div id="examples" class="mb-12 sm:mb-16">
+                <div class="text-center mb-6 sm:mb-10">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-3 sm:mb-4" style="font-family: 'Noto Sans Bengali', sans-serif;">
+                        📝 অনুশীলন সমস্যা
+                        <span class="block text-base sm:text-lg md:text-xl text-emerald-400 mt-2">Practice Problems</span>
+                    </h2>
+                    <p class="text-sm sm:text-base text-slate-400" style="font-family: 'Noto Sans Bengali', sans-serif;">
+                        সহজ থেকে কঠিন - ধাপে ধাপে শিখুন
+                    </p>
+                </div>
+
+                <!-- Difficulty Filter -->
+                <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-6 sm:mb-8 px-2">
+                    <button onclick="filterExamples('all')" class="filter-btn active px-4 sm:px-6 py-2 text-sm sm:text-base rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/50 hover:bg-emerald-500/30 transition-all" data-filter="all">
+                        সব দেখুন
+                    </button>
+                    <button onclick="filterExamples('easy')" class="filter-btn px-4 sm:px-6 py-2 text-sm sm:text-base rounded-full bg-slate-800 text-slate-400 border border-slate-700 hover:border-green-500/50 hover:text-green-400 transition-all" data-filter="easy">
+                        🟢 সহজ
+                    </button>
+                    <button onclick="filterExamples('medium')" class="filter-btn px-4 sm:px-6 py-2 text-sm sm:text-base rounded-full bg-slate-800 text-slate-400 border border-slate-700 hover:border-yellow-500/50 hover:text-yellow-400 transition-all" data-filter="medium">
+                        🟡 মাঝারি
+                    </button>
+                    <button onclick="filterExamples('hard')" class="filter-btn px-4 sm:px-6 py-2 text-sm sm:text-base rounded-full bg-slate-800 text-slate-400 border border-slate-700 hover:border-red-500/50 hover:text-red-400 transition-all" data-filter="hard">
+                        🔴 কঠিন
+                    </button>
+                </div>
+
+                <!-- Examples Grid -->
+                <div id="examplesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                    <!-- Examples will be inserted here by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Example Solution Modal -->
+            <div id="exampleModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-2 sm:p-4 md:p-6">
+                <div class="bg-slate-900 rounded-xl sm:rounded-2xl max-w-4xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-hidden shadow-2xl border border-emerald-500/30">
+                    <div class="flex justify-between items-center p-4 sm:p-6 border-b border-slate-800">
+                        <div>
+                            <span id="exampleDifficulty" class="text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-full"></span>
+                            <h3 id="exampleTitle" class="text-lg sm:text-xl md:text-2xl font-bold text-white mt-2" style="font-family: 'Noto Sans Bengali', sans-serif;"></h3>
+                        </div>
+                        <button onclick="closeExampleModal()" class="text-slate-400 hover:text-white transition-colors">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="overflow-y-auto max-h-[calc(95vh-80px)] sm:max-h-[calc(90vh-100px)] p-4 sm:p-6">
+                        <!-- Problem -->
+                        <div class="mb-4 sm:mb-6">
+                            <h4 class="text-base sm:text-lg font-semibold text-emerald-400 mb-2 sm:mb-3" style="font-family: 'Noto Sans Bengali', sans-serif;">📋 সমস্যা:</h4>
+                            <p id="exampleProblem" class="text-sm sm:text-base text-slate-300 bg-slate-800/50 p-3 sm:p-4 rounded-lg" style="font-family: 'Noto Sans Bengali', sans-serif;"></p>
+                        </div>
+                        <!-- Hint -->
+                        <div class="mb-6">
+                            <button onclick="toggleExampleHint()" class="text-yellow-400 hover:text-yellow-300 font-semibold flex items-center gap-2" style="font-family: 'Noto Sans Bengali', sans-serif;">
+                                💡 হিন্ট দেখুন
+                            </button>
+                            <div id="exampleHint" class="hidden mt-3 bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+                                <p id="exampleHintText" class="text-slate-300" style="font-family: 'Noto Sans Bengali', sans-serif;"></p>
+                            </div>
+                        </div>
+                        <!-- Solution -->
+                        <div class="mb-6">
+                            <button onclick="toggleExampleSolution()" class="bg-gradient-to-r from-emerald-500 to-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg hover:shadow-emerald-500/50 transition-all" style="font-family: 'Noto Sans Bengali', sans-serif;">
+                                ✅ সমাধান দেখুন
+                            </button>
+                            <div id="exampleSolution" class="hidden mt-4">
+                                <h4 class="text-lg font-semibold text-emerald-400 mb-3" style="font-family: 'Noto Sans Bengali', sans-serif;">💻 কোড:</h4>
+                                <div class="bg-slate-950 rounded-xl p-4 border border-slate-800 mb-4">
+                                    <pre class="text-emerald-400 font-mono text-sm overflow-x-auto"><code id="exampleCode"></code></pre>
+                                </div>
+                                <h4 class="text-lg font-semibold text-emerald-400 mb-3" style="font-family: 'Noto Sans Bengali', sans-serif;">📤 আউটপুট:</h4>
+                                <div class="bg-slate-800 rounded-xl p-4 border border-slate-700">
+                                    <pre id="exampleOutput" class="text-white font-mono text-sm"></pre>
+                                </div>
+                                <div class="mt-4 bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+                                    <h4 class="text-blue-400 font-semibold mb-2" style="font-family: 'Noto Sans Bengali', sans-serif;">📖 ব্যাখ্যা:</h4>
+                                    <p id="exampleExplanation" class="text-slate-300" style="font-family: 'Noto Sans Bengali', sans-serif;"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Concept Detail Modal -->
+            <div id="conceptModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-2 sm:p-4 md:p-6">
+                <div class="bg-slate-900 rounded-xl sm:rounded-2xl max-w-4xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-hidden shadow-2xl border border-emerald-500/30 modal-content">
+                    <!-- Close Button -->
+                    <div class="flex justify-between items-center p-4 sm:p-6 md:p-8 border-b border-slate-800">
+                        <h3 id="modalConceptName" class="text-2xl sm:text-3xl md:text-4xl font-black text-white"></h3>
+                        <button id="closeModal" class="text-slate-400 hover:text-white transition-colors">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="overflow-y-auto max-h-[calc(95vh-80px)] sm:max-h-[calc(90vh-120px)] p-4 sm:p-6 md:p-8">
+                        <!-- Description -->
+                        <div class="mb-4 sm:mb-6 md:mb-8">
+                            <p id="modalDescription" class="text-sm sm:text-base md:text-lg text-slate-300"></p>
+                        </div>
+
+                        <!-- Syntax Section -->
+                        <div class="mb-4 sm:mb-6 md:mb-8 section-fade-in">
+                            <div class="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
+                                <div class="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center">
+                                    <span class="text-white font-bold text-sm sm:text-base">1</span>
+                                </div>
+                                <h4 class="text-lg sm:text-xl md:text-2xl font-bold text-white">Syntax</h4>
+                            </div>
+                            <div class="bg-slate-950 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border border-slate-800">
+                                <pre class="text-emerald-400 font-mono text-xs sm:text-sm overflow-x-auto"><code id="modalSyntax"></code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Example Section -->
+                        <div class="mb-4 sm:mb-6 md:mb-8 section-fade-in">
+                            <div class="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
+                                <div class="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
+                                    <span class="text-white font-bold text-sm sm:text-base">2</span>
+                                </div>
+                                <h4 class="text-lg sm:text-xl md:text-2xl font-bold text-white">Example</h4>
+                            </div>
+                            <div class="bg-slate-950 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border border-slate-800 mb-3 sm:mb-4">
+                                <pre class="text-emerald-400 font-mono text-xs sm:text-sm overflow-x-auto"><code id="modalExample"></code></pre>
+                            </div>
+                            <div class="bg-slate-800 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border border-slate-700">
+                                <div class="text-xs text-slate-400 mb-2 sm:mb-3 font-semibold">OUTPUT:</div>
+                                <pre id="modalOutput" class="text-white font-mono text-xs sm:text-sm"></pre>
+                            </div>
+                        </div>
+
+                        <!-- Practice Section -->
+                        <div class="section-fade-in">
+                            <div class="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
+                                <div class="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center">
+                                    <span class="text-white font-bold text-sm sm:text-base">3</span>
+                                </div>
+                                <h4 class="text-lg sm:text-xl md:text-2xl font-bold text-white">Practice</h4>
+                            </div>
+                            <div class="bg-gradient-to-br from-slate-900 to-slate-950 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border border-orange-500/30">
+                                <p id="modalChallenge" class="text-sm sm:text-base text-slate-300 mb-3 sm:mb-4"></p>
+                                <div class="mb-3 sm:mb-4">
+                                    <div class="text-xs text-slate-500 mb-2 font-semibold uppercase tracking-wider">Your Code:</div>
+                                    <textarea 
+                                        id="practiceInput" 
+                                        class="w-full bg-slate-950 text-emerald-400 font-mono text-xs sm:text-sm p-3 sm:p-4 rounded-lg border border-slate-700 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 transition-all min-h-[150px] sm:min-h-[200px]"
+                                        placeholder="// Write your C code here..."></textarea>
+                                </div>
+                                <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-0">
+                                    <button id="runCode" class="bg-gradient-to-r from-emerald-500 to-green-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold text-sm sm:text-base hover:shadow-lg hover:shadow-emerald-500/50 transition-all transform hover:scale-105">
+                                        Compile & Run
+                                    </button>
+                                    <div class="flex items-center justify-center sm:justify-end space-x-3">
+                                        <button id="showHint" class="text-yellow-400 hover:text-yellow-300 transition-colors text-xs sm:text-sm font-semibold">
+                                            💡 Hint
+                                        </button>
+                                        <button id="resetCode" class="text-slate-400 hover:text-white transition-colors text-xs sm:text-sm">
+                                            Reset
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="hintBox" class="mt-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 hidden">
+                                    <div class="flex items-start space-x-3">
+                                        <span class="text-yellow-400 text-xl">💡</span>
+                                        <div>
+                                            <div class="text-yellow-400 font-semibold mb-1">Hint:</div>
+                                            <p id="hintText" class="text-slate-300 text-sm"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="practiceOutput" class="mt-4 bg-slate-800 rounded-lg p-4 border border-slate-700 hidden">
+                                    <div class="text-xs text-slate-400 mb-2 font-semibold">OUTPUT:</div>
+                                    <pre id="practiceResult" class="text-white font-mono text-sm"></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!--#include file="footer.html" -->
+
+    <script src="c-script.js"></script>
+</body>
+</html>

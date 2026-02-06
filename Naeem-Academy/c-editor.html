@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" class="min-h-screen bg-slate-950">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C Programming Editor | Naeem Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Tailwind CSS CDN should be last -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;700&family=Noto+Sans+Bengali:wght@400;700&display=swap" rel="stylesheet">
+    <script src="c-script.js" defer></script>
+</head>
+<body class="bg-slate-950 text-white min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="w-full bg-gradient-to-r from-violet-700 to-purple-900 shadow-lg py-4 px-6 flex items-center justify-between">
+        <a href="index.html" class="text-2xl font-bold text-white tracking-wide">Naeem Academy</a>
+        <nav class="space-x-4">
+            <a href="html.html" class="hover:text-cyan-400 transition">HTML</a>
+            <a href="c-programming.html" class="hover:text-emerald-400 transition">C Programming</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col items-center justify-center py-10 px-4">
+        <h1 class="text-3xl sm:text-4xl font-bold mb-4 text-emerald-400">C Programming Editor</h1>
+        <p class="text-slate-400 mb-6 max-w-xl text-center">Write, edit, and test your C code in this interactive editor. <br>Note: This is a simulation and does not run real C code, but provides syntax highlighting and output simulation for learning purposes.</p>
+        <div class="w-full max-w-3xl bg-slate-900 rounded-xl shadow-lg p-6 border border-slate-800">
+            <label for="cEditorInput" class="block text-sm font-semibold mb-2">C Code:</label>
+            <textarea id="cEditorInput" class="w-full h-56 bg-slate-800 text-white font-mono rounded-lg p-3 mb-4 resize-y border border-slate-700 focus:border-emerald-500 outline-none transition" placeholder="#include <stdio.h>\n\nint main() {\n    // Write your code here\n    return 0;\n}"></textarea>
+                        <!-- The above textarea will now be styled by Tailwind -->
+            <div class="flex items-center space-x-3 mb-4">
+                <button id="runCEditorCode" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-5 py-2 rounded transition">Compile & Run</button>
+                <button id="resetCEditorCode" class="bg-slate-700 hover:bg-slate-800 text-slate-200 px-4 py-2 rounded transition">Reset</button>
+            </div>
+            <div id="cEditorOutput" class="hidden bg-slate-800 text-green-400 font-mono rounded-lg p-3 mt-2 whitespace-pre-wrap"></div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full bg-slate-900 border-t border-slate-800 py-6 mt-10">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between px-4">
+            <div class="text-slate-400 text-sm mb-2 sm:mb-0">
+                Developed by <span class="text-white font-semibold">Naeem</span> | Dept. of CSE, University of Barisal<br>
+                Phone: <a href="tel:01623094662" class="text-emerald-400 hover:underline">01623094662</a> | Email: <a href="mailto:naeem.cse7.bu@gmail.com" class="text-emerald-400 hover:underline">naeem.cse7.bu@gmail.com</a>
+            </div>
+            <a href="https://www.facebook.com/AreFin1Naeem/" target="_blank" class="text-emerald-400 hover:underline flex items-center space-x-1">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.325 24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0"/></svg>
+                <span>Facebook</span>
+            </a>
+        </div>
+    </footer>
+    <script>
+    // C Editor simulation logic
+    document.addEventListener('DOMContentLoaded', () => {
+        const input = document.getElementById('cEditorInput');
+        const output = document.getElementById('cEditorOutput');
+        const runBtn = document.getElementById('runCEditorCode');
+        const resetBtn = document.getElementById('resetCEditorCode');
+
+        runBtn.addEventListener('click', () => {
+            const code = input.value.trim();
+            if (!code) {
+                output.textContent = 'Please write some C code first!';
+                output.classList.remove('hidden');
+                output.classList.remove('text-green-400');
+                output.classList.add('text-yellow-400');
+                return;
+            }
+            runBtn.textContent = 'Compiling...';
+            runBtn.disabled = true;
+            setTimeout(() => {
+                let out = '';
+                if (!code.includes('#include')) {
+                    out = 'Error: Missing #include directive';
+                    output.classList.remove('text-green-400');
+                    output.classList.add('text-red-400');
+                } else if (!code.includes('main')) {
+                    out = 'Error: main() function not found';
+                    output.classList.remove('text-green-400');
+                    output.classList.add('text-red-400');
+                } else {
+                    out = 'Compilation successful!\n\n--- Program Output ---\n';
+                    if (code.includes('printf')) {
+                        const printfMatches = code.match(/printf\s*\([^)]*\)/g);
+                        if (printfMatches) {
+                            printfMatches.forEach((match) => {
+                                const stringMatch = match.match(/"([^"]*)"/);
+                                if (stringMatch) {
+                                    let text = stringMatch[1]
+                                        .replace(/\\n/g, '\n')
+                                        .replace(/\\t/g, '\t')
+                                        .replace(/%d/g, '0')
+                                        .replace(/%f/g, '0.0')
+                                        .replace(/%c/g, 'X');
+                                    out += text;
+                                }
+                            });
+                        }
+                    } else {
+                        out += 'Program compiled but produces no output';
+                    }
+                    output.classList.remove('text-red-400', 'text-yellow-400');
+                    output.classList.add('text-green-400');
+                }
+                output.textContent = out;
+                output.classList.remove('hidden');
+                runBtn.textContent = 'Compile & Run';
+                runBtn.disabled = false;
+            }, 1200);
+        });
+        resetBtn.addEventListener('click', () => {
+            input.value = '';
+            output.classList.add('hidden');
+        });
+    });
+    </script>
+
+</body>
+</html>
