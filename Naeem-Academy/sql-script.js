@@ -552,12 +552,13 @@ function renderExamples(filter = 'all') {
 function showConceptModal(concept) {
     const modal = document.getElementById('conceptModal');
     document.getElementById('modalConceptName').textContent = concept.name;
-    document.getElementById('modalDescription').textContent = concept.description;
+    // Format description with proper line breaks
+    const formattedDescription = concept.description.replace(/\n/g, '<br>');
+    document.getElementById('modalDescription').innerHTML = formattedDescription;
     document.getElementById('modalSyntax').textContent = concept.syntax;
     document.getElementById('modalExample').textContent = concept.example;
     document.getElementById('modalOutput').textContent = concept.output;
     document.getElementById('modalChallenge').textContent = concept.challenge;
-    document.getElementById('practiceResult').textContent = 'এটি একটি practice challenge। আপনার সমাধান এখানে appear করবে।';
 
     modal.classList.remove('hidden');
     modal.classList.add('flex');
