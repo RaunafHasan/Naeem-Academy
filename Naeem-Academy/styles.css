@@ -634,3 +634,19 @@ button:hover::after {
 .concept-card.animated {
     transition: all 0.3s ease;
 }
+
+/* === Hide Scrollbars (All Browsers) === */
+/* Firefox */
+html, body {
+    scrollbar-width: none;
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* IE and Edge */
+html, body {
+    -ms-overflow-style: none;
+}
