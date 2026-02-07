@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML উদাহরণ ও সমাধান - HTML Academy</title>
+    <title>HTML Example - HTML Academy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,7 +54,44 @@
     </style>
 </head>
 <body class="bg-slate-950 text-white">
-    <!--#include file="header.html" -->
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg bg-slate-950/80 border-b border-violet-500/20">
+        <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2 sm:space-x-3">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center">
+                        <span class="text-white font-bold text-xl sm:text-2xl">N</span>
+                    </div>
+                    <h1 class="text-xl sm:text-2xl font-bold text-white logo-text">Naeem Academy</h1>
+                </div>
+                <button id="mobileMenuBtn" class="md:hidden text-white p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-slate-300 hover:text-violet-400 transition-colors nav-link">Home</a>
+                    <a href="html.html" class="text-slate-300 hover:text-cyan-400 transition-colors nav-link">HTML</a>
+                    <a href="html-examples.html" class="text-cyan-400 font-semibold nav-link">HTML Examples</a>
+                    <a href="c-examples.html" class="text-slate-300 hover:text-emerald-400 transition-colors nav-link">C Examples</a>
+                    <a href="sql-examples.html" class="text-slate-300 hover:text-fuchsia-400 transition-colors nav-link">SQL Examples</a>
+                    <a href="c-programming.html" class="text-slate-300 hover:text-emerald-400 transition-colors nav-link">C Programming</a>
+                    <a href="sql-query.html" class="text-slate-300 hover:text-fuchsia-400 transition-colors nav-link">SQL</a>
+                </div>
+            </div>
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-2 border-t border-slate-800 pt-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="index.html" class="text-slate-300 hover:text-violet-400 transition-colors">Home</a>
+                    <a href="html.html" class="text-slate-300 hover:text-cyan-400 transition-colors">HTML</a>
+                    <a href="html-examples.html" class="text-cyan-400 font-semibold">HTML Examples</a>
+                    <a href="c-examples.html" class="text-slate-300 hover:text-emerald-400 transition-colors">C Examples</a>
+                    <a href="sql-examples.html" class="text-slate-300 hover:text-fuchsia-400 transition-colors">SQL Examples</a>
+                    <a href="c-programming.html" class="text-slate-300 hover:text-emerald-400 transition-colors">C Programming</a>
+                    <a href="sql-query.html" class="text-slate-300 hover:text-fuchsia-400 transition-colors">SQL</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <!-- Main Content -->
     <main class="pt-24 pb-16">
@@ -62,7 +99,7 @@
             <!-- Hero Section -->
             <div class="text-center lg:text-left mb-12">
                 <h2 class="text-5xl font-black text-white mb-4">
-                    📚 HTML উদাহরণ ও সমাধান
+                    📚 HTML Example
                 </h2>
                 <p class="text-xl text-slate-400 max-w-2xl mx-auto lg:ml-0 lg:mr-0">
                     বিভিন্ন HTML ট্যাগের উদাহরণ এবং তাদের সমাধান দেখো এবং শেখো
@@ -77,6 +114,12 @@
                 <a href="#link" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-cyan-500 hover:text-white transition-all">🔗 Links & Images</a>
                 <a href="#table" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-cyan-500 hover:text-white transition-all">📊 Tables</a>
                 <a href="#form" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-cyan-500 hover:text-white transition-all">📝 Forms</a>
+                <a href="#link-tag" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-cyan-500 hover:text-white transition-all">🔗 অ্যাঙ্কর</a>
+                <a href="#image-tag" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-cyan-500 hover:text-white transition-all">🖼️ Image</a>
+                <a href="#media-tag" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-cyan-500 hover:text-white transition-all">🎵 Media</a>
+                <a href="#ordered-list" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-cyan-500 hover:text-white transition-all">📑 লিস্ট</a>
+                <a href="#div-span" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-cyan-500 hover:text-white transition-all">📦 DIV/SPAN</a>
+                <a href="#advanced-tags" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-cyan-500 hover:text-white transition-all">⚙️ আরও</a>
             </div>
 
             <!-- ==================== BASIC STRUCTURE ==================== -->
@@ -1221,10 +1264,430 @@
                 </ul>
             </div>
 
+            <!-- ==================== LINKS ==================== -->
+            <section id="link-tag" class="category-section mb-16">
+                <h3 class="text-3xl font-bold text-blue-400 mb-8 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center text-white">🔗</span>
+                    Link Tag উদাহরণ
+                </h3>
+
+                <!-- Example 1 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ১: বিভিন্ন ধরনের লিংক</h4>
+                    <p class="text-slate-400 mb-4">বিভিন্ন লিংক এবং তাদের ব্যবহার দেখুন।</p>
+                    
+                    <div class="toggle-btn text-cyan-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>&lt;!-- External Link --&gt;
+&lt;a href="https://google.com"&gt;Visit Google&lt;/a&gt;
+
+&lt;!-- New Tab --&gt;
+&lt;a href="https://youtube.com" target="_blank"&gt;YouTube&lt;/a&gt;
+
+&lt;!-- Email Link --&gt;
+&lt;a href="mailto:test@mail.com"&gt;Send Email&lt;/a&gt;
+
+&lt;!-- Phone Link --&gt;
+&lt;a href="tel:+880123456789"&gt;Call Now&lt;/a&gt;
+
+&lt;!-- Download --&gt;
+&lt;a href="file.pdf" download&gt;Download PDF&lt;/a&gt;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <a href="https://google.com" class="text-cyan-400 underline">Visit Google</a><br><br>
+                            <a href="https://youtube.com" target="_blank" class="text-cyan-400 underline">YouTube (নতুন ট্যাব)</a><br><br>
+                            <a href="mailto:test@mail.com" class="text-cyan-400 underline">📧 Send Email</a><br><br>
+                            <a href="tel:+880123456789" class="text-cyan-400 underline">📞 Call Now</a><br><br>
+                            <a href="#" class="text-cyan-400 underline">📥 Download PDF</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== IMAGE TAG ==================== -->
+            <section id="image-tag" class="category-section mb-16">
+                <h3 class="text-3xl font-bold text-blue-400 mb-8 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center text-white">🖼️</span>
+                    Image Tag উদাহরণ
+                </h3>
+
+                <!-- Example 1 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ১: Image Tag সব Attribute সহ</h4>
+                    <p class="text-slate-400 mb-4">src, alt, width, height, title সহ image ট্যাগ ব্যবহার করুন।</p>
+                    
+                    <div class="toggle-btn text-cyan-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>&lt;!-- Basic Image --&gt;
+&lt;img src="photo.jpg" alt="সুন্দর ছবি"&gt;
+
+&lt;!-- With Size --&gt;
+&lt;img src="logo.png" alt="লোগো" 
+     width="200" height="100"&gt;
+
+&lt;!-- With Title & Lazy Load --&gt;
+&lt;img src="banner.jpg" alt="ব্যানার"
+     title="মাউস রাখলে দেখাবে"
+     loading="lazy"&gt;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="bg-slate-700 p-4 rounded text-center">
+                                    <div class="text-3xl">🖼️</div>
+                                    <div class="text-xs text-slate-400 mt-2">Basic Image</div>
+                                </div>
+                                <div class="bg-slate-700 p-4 rounded text-center">
+                                    <div class="w-24 h-12 bg-slate-600 mx-auto flex items-center justify-center text-xs">200×100</div>
+                                    <div class="text-xs text-slate-400 mt-2">With Size</div>
+                                </div>
+                                <div class="bg-slate-700 p-4 rounded text-center">
+                                    <div class="text-3xl">🖼️</div>
+                                    <div class="text-xs text-slate-400 mt-2">Lazy Load</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== AUDIO & VIDEO ==================== -->
+            <section id="media-tag" class="category-section mb-16">
+                <h3 class="text-3xl font-bold text-blue-400 mb-8 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center text-white">🎵</span>
+                    Audio & Video Tag উদাহরণ
+                </h3>
+
+                <!-- Example 1 - Audio -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ১: Audio Tag</h4>
+                    <p class="text-slate-400 mb-4">Audio ফাইল চালানোর জন্য audio tag ব্যবহার করুন।</p>
+                    
+                    <div class="toggle-btn text-cyan-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>&lt;audio controls autoplay loop muted&gt;
+  &lt;source src="song.mp3" type="audio/mpeg"&gt;
+  আপনার ব্রাউজার অডিও সাপোর্ট করে না
+&lt;/audio&gt;
+
+Attributes:
+- controls: কন্ট্রোল দেখান
+- autoplay: স্বয়ংক্রিয় চালু
+- loop: পুনরাবৃত্তি করুন
+- muted: নিঃশব্দ</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-3">OUTPUT:</div>
+                            <div class="bg-slate-700 p-4 rounded">
+                                <div class="text-3xl text-center mb-2">🎵</div>
+                                <p class="text-center text-sm text-slate-300">[Audio Player Controls]</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 2 - Video -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ২: Video Tag</h4>
+                    <p class="text-slate-400 mb-4">Video ফাইল চালানোর জন্য video tag ব্যবহার করুন।</p>
+                    
+                    <div class="toggle-btn text-cyan-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>&lt;video controls width="400" height="300" 
+        poster="thumb.jpg" loop muted&gt;
+  &lt;source src="video.mp4" type="video/mp4"&gt;
+  আপনার ব্রাউজার ভিডিও সাপোর্ট করে না
+&lt;/video&gt;
+
+Attributes:
+- controls: প্লে বাটন দেখান
+- width, height: ভিডিওর সাইজ
+- poster: থাম্বনেইল ছবি
+- loop: পুনরাবৃত্তি</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-3">OUTPUT:</div>
+                            <div class="bg-slate-700 p-4 rounded" style="width:100%; max-width:400px;">
+                                <div class="bg-black text-3xl text-center py-8">🎬</div>
+                                <p class="text-center text-sm text-slate-300 mt-2">[Video Player]</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== LISTS ==================== -->
+            <section id="ordered-list" class="category-section mb-16">
+                <h3 class="text-3xl font-bold text-blue-400 mb-8 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center text-white">📑</span>
+                    Ordered & Unordered Lists উদাহরণ
+                </h3>
+
+                <!-- Example 1 - OL -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ১: Ordered List (OL)</h4>
+                    <p class="text-slate-400 mb-4">বিভিন্ন type এবং start এর সাথে ordered list তৈরি করুন।</p>
+                    
+                    <div class="toggle-btn text-cyan-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>&lt;!-- 1, 2, 3... --&gt;
+&lt;ol&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+  &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- A, B, C... --&gt;
+&lt;ol type="A"&gt;
+  &lt;li&gt;First&lt;/li&gt;
+  &lt;li&gt;Second&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- I, II, III... --&gt;
+&lt;ol type="I" start="3"&gt;
+  &lt;li&gt;Third&lt;/li&gt;
+  &lt;li&gt;Fourth&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <div class="grid grid-cols-3 gap-4">
+                                <div>
+                                    <p class="text-xs text-slate-400 mb-2">Numbers</p>
+                                    <ol style="list-style-type: decimal; padding-left: 20px;">
+                                        <li>HTML</li>
+                                        <li>CSS</li>
+                                    </ol>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400 mb-2">Letters</p>
+                                    <ol style="list-style-type: upper-alpha; padding-left: 20px;">
+                                        <li>First</li>
+                                        <li>Second</li>
+                                    </ol>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400 mb-2">Roman</p>
+                                    <ol style="list-style-type: upper-roman; padding-left: 20px;" start="3">
+                                        <li>Third</li>
+                                        <li>Fourth</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 2 - UL -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ২: Unordered List (UL)</h4>
+                    <p class="text-slate-400 mb-4">বিভিন্ন style এর সাথে unordered list তৈরি করুন।</p>
+                    
+                    <div class="toggle-btn text-cyan-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>&lt;!-- Disc (●) --&gt;
+&lt;ul style="list-style-type:disc;"&gt;
+  &lt;li&gt;Apple&lt;/li&gt;
+  &lt;li&gt;Banana&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Circle (○) --&gt;
+&lt;ul style="list-style-type:circle;"&gt;
+  &lt;li&gt;Red&lt;/li&gt;
+  &lt;li&gt;Green&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Square (■) --&gt;
+&lt;ul style="list-style-type:square;"&gt;
+  &lt;li&gt;Box1&lt;/li&gt;
+  &lt;li&gt;Box2&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <div class="grid grid-cols-3 gap-4">
+                                <div>
+                                    <p class="text-xs text-slate-400 mb-2">● Disc</p>
+                                    <ul style="list-style-type: disc; padding-left: 20px;">
+                                        <li>Apple</li>
+                                        <li>Banana</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400 mb-2">○ Circle</p>
+                                    <ul style="list-style-type: circle; padding-left: 20px;">
+                                        <li>Red</li>
+                                        <li>Green</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400 mb-2">■ Square</p>
+                                    <ul style="list-style-type: square; padding-left: 20px;">
+                                        <li>Box1</li>
+                                        <li>Box2</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== DIV & SPAN ==================== -->
+            <section id="div-span" class="category-section mb-16">
+                <h3 class="text-3xl font-bold text-blue-400 mb-8 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center text-white">📦</span>
+                    DIV & SPAN উদাহরণ
+                </h3>
+
+                <!-- Example 1 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ১: DIV (Block) ও SPAN (Inline)</h4>
+                    <p class="text-slate-400 mb-4">DIV এবং SPAN এর পার্থক্য বুঝুন।</p>
+                    
+                    <div class="toggle-btn text-cyan-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>&lt;div style="background:lightblue; padding:20px;"&gt;
+  এটি একটি DIV - Block Element
+  পুরো লাইন দখল করবে
+&lt;/div&gt;
+
+&lt;p&gt;এটি একটি &lt;span style="color:red;"&gt;SPAN&lt;/span&gt; - 
+Inline Element, টেক্সটের মধ্যে কাজ করে&lt;/p&gt;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <div style="background:#bfdbfe; padding:20px; border-radius:8px; margin-bottom:10px;">
+                                এটি একটি DIV - Block Element<br/>
+                                পুরো লাইন দখল করবে
+                            </div>
+                            <p>এটি একটি <span style="color:#ef4444; font-weight:bold;">SPAN</span> - Inline Element, টেক্সটের মধ্যে কাজ করে</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== ADVANCED TAGS ==================== -->
+            <section id="advanced-tags" class="category-section mb-16">
+                <h3 class="text-3xl font-bold text-blue-400 mb-8 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center text-white">⚙️</span>
+                    Advanced Tags উদাহরণ
+                </h3>
+
+                <!-- Example 1 - IFrame -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ১: IFrame Tag</h4>
+                    <p class="text-slate-400 mb-4">অন্য ওয়েবসাইট বা পেজ embed করুন।</p>
+                    
+                    <div class="toggle-btn text-cyan-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>&lt;iframe 
+  src="https://www.youtube.com/embed/..."
+  width="560" 
+  height="315"
+  frameborder="0"
+  allowfullscreen&gt;
+&lt;/iframe&gt;
+
+Attributes:
+- src: যুক্ত করতে হবে এমন পেজ/ভিডিও
+- width, height: সাইজ নির্ধারণ
+- frameborder: সীমানা
+- allowfullscreen: ফুল স্ক্রিন অনুমতি</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <div class="bg-slate-700 p-8 rounded text-center">
+                                <div class="text-3xl mb-2">📺</div>
+                                <p class="text-sm text-slate-300">[Embedded Content]</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 2 - Meta Tags -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ২: Meta Tags (SEO)</h4>
+                    <p class="text-slate-400 mb-4">পেজের তথ্য সার্চ ইঞ্জিনকে জানান।</p>
+                    
+                    <div class="toggle-btn text-cyan-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="description" 
+        content="আমাদের ওয়েবসাইট শিক্ষার জন্য"&gt;
+  &lt;meta name="keywords" 
+        content="HTML, CSS, JavaScript"&gt;
+  &lt;meta name="author" content="Naeem"&gt;
+  &lt;meta name="viewport" 
+        content="width=device-width, initial-scale=1.0"&gt;
+  
+  &lt;title&gt;আমার পেজ&lt;/title&gt;
+&lt;/head&gt;
+
+Purpose:
+- charset: টেক্সট এনকোডিং
+- description: গুগলে দেখা বর্ণনা
+- keywords: সার্চ টার্ম
+- viewport: মোবাইল রেসপন্সিভ</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">ব্যবহার:</div>
+                            <p class="text-slate-300">Meta tags পেজের invisible তথ্য যা সার্চ ইঞ্জিন পড়ে। সরাসরি পেজে দেখা যায় না।</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
         </div>
     </main>
 
-    <!--#include file="footer.html" -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-8 mt-16">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-slate-400">
+                © 2026 Naeem Academy. Built with <span class="text-red-500">♥</span> for aspiring programmers
+            </p>
+            <p class="text-slate-500 text-sm mt-2">HTML Examples - শিখো, অনুশীলন করো, মাস্টার হও!</p>
+            <p class="text-slate-500 text-sm mt-3"><a href="test.html" class="text-cyan-400 hover:text-cyan-300 transition-colors">📚 HTML Revison</a></p>
+        </div>
+    </footer>
 
     <script>
         function toggleSolution(btn) {

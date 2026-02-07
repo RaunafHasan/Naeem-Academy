@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C Programming Example - Naeem Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .example-card {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid #334155;
+            transition: all 0.3s ease;
+        }
+        .example-card:hover {
+            border-color: #34d399;
+            box-shadow: 0 0 20px rgba(52, 211, 153, 0.1);
+        }
+        .solution-box {
+            background: #0f172a;
+            border: 1px solid #065f46;
+        }
+        .output-box {
+            background: #1e293b;
+            border: 1px solid #334155;
+        }
+        .code-block {
+            background: #020617;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .toggle-btn {
+            cursor: pointer;
+            user-select: none;
+        }
+        .category-section {
+            scroll-margin-top: 100px;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg bg-slate-950/80 border-b border-violet-500/20">
+        <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2 sm:space-x-3">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center">
+                        <span class="text-white font-bold text-xl sm:text-2xl">N</span>
+                    </div>
+                    <h1 class="text-xl sm:text-2xl font-bold text-white logo-text">Naeem Academy</h1>
+                </div>
+                <button id="mobileMenuBtn" class="md:hidden text-white p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-slate-300 hover:text-violet-400 transition-colors nav-link">Home</a>
+                    <a href="html.html" class="text-slate-300 hover:text-cyan-400 transition-colors nav-link">HTML</a>
+                    <a href="html-examples.html" class="text-slate-300 hover:text-cyan-400 transition-colors nav-link">HTML Examples</a>
+                    <a href="c-programming.html" class="text-slate-300 hover:text-emerald-400 transition-colors nav-link">C Programming</a>
+                    <a href="c-examples.html" class="text-emerald-400 font-semibold nav-link">C Examples</a>
+                    <a href="sql-query.html" class="text-slate-300 hover:text-fuchsia-400 transition-colors nav-link">SQL</a>
+                    <a href="sql-examples.html" class="text-slate-300 hover:text-fuchsia-400 transition-colors nav-link">SQL Examples</a>
+                </div>
+            </div>
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-2 border-t border-slate-800 pt-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="index.html" class="text-slate-300 hover:text-violet-400 transition-colors">Home</a>
+                    <a href="html.html" class="text-slate-300 hover:text-cyan-400 transition-colors">HTML</a>
+                    <a href="html-examples.html" class="text-slate-300 hover:text-cyan-400 transition-colors">HTML Examples</a>
+                    <a href="c-programming.html" class="text-slate-300 hover:text-emerald-400 transition-colors">C Programming</a>
+                    <a href="c-examples.html" class="text-emerald-400 font-semibold">C Examples</a>
+                    <a href="sql-query.html" class="text-slate-300 hover:text-fuchsia-400 transition-colors">SQL</a>
+                    <a href="sql-examples.html" class="text-slate-300 hover:text-fuchsia-400 transition-colors">SQL Examples</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-16">
+        <div class="container mx-auto px-6">
+            <!-- Hero Section -->
+            <div class="text-center lg:text-left mb-12">
+                <h2 class="text-5xl font-black text-white mb-4">
+                    💻 C Programming Example
+                </h2>
+                <p class="text-xl text-slate-400 max-w-2xl mx-auto lg:ml-0 lg:mr-0">
+                    বিভিন্ন C প্রোগ্রামের উদাহরণ এবং সমাধান দেখো এবং শিখো
+                </p>
+            </div>
+
+            <!-- Quick Navigation -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <a href="#basic" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-emerald-500 hover:text-white transition-all">📁 Basic Programs</a>
+                <a href="#loop" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-emerald-500 hover:text-white transition-all">🔄 Loops</a>
+                <a href="#conditional" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-emerald-500 hover:text-white transition-all">❓ Conditionals</a>
+                <a href="#array" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-emerald-500 hover:text-white transition-all">📚 Arrays</a>
+                <a href="#function" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-emerald-500 hover:text-white transition-all">⚙️ Functions</a>
+                <a href="#string" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-emerald-500 hover:text-white transition-all">📝 Strings</a>
+            </div>
+
+            <!-- BASIC PROGRAMS -->
+            <section id="basic" class="category-section mb-16">
+                <h3 class="text-3xl font-bold text-emerald-400 mb-8 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center text-white">📁</span>
+                    Basic Programs উদাহরণ
+                </h3>
+
+                <!-- Example 1 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ১: Hello World প্রোগ্রাম</h4>
+                    <p class="text-slate-400 mb-4">আপনার প্রথম C প্রোগ্রাম লিখুন যা "Hello, World!" প্রিন্ট করবে।</p>
+                    
+                    <div class="toggle-btn text-emerald-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>#include &lt;stdio.h&gt;
+
+int main() {
+    printf("Hello, World!\n");
+    return 0;
+}</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <pre class="text-white">Hello, World!</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 2 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ২: ভেরিয়েবল ডিক্লেয়ার এবং প্রিন্ট করা</h4>
+                    <p class="text-slate-400 mb-4">একটি সংখ্যা ভেরিয়েবলে স্টোর করুন এবং তা প্রিন্ট করুন।</p>
+                    
+                    <div class="toggle-btn text-emerald-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int age = 25;
+    float gpa = 3.85;
+    
+    printf("আমার বয়স: %d\n", age);
+    printf("আমার GPA: %.2f\n", gpa);
+    
+    return 0;
+}</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <pre class="text-white">আমার বয়স: 25
+আমার GPA: 3.85</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LOOPS -->
+            <section id="loop" class="category-section mb-16">
+                <h3 class="text-3xl font-bold text-emerald-400 mb-8 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center text-white">🔄</span>
+                    Loop উদাহরণ
+                </h3>
+
+                <!-- Example 1 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ১: For Loop (১ থেকে ১০ পর্যন্ত)</h4>
+                    <p class="text-slate-400 mb-4">একটি for loop ব্যবহার করে ১ থেকে ১০ পর্যন্ত সংখ্যা প্রিন্ট করুন।</p>
+                    
+                    <div class="toggle-btn text-emerald-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>#include &lt;stdio.h&gt;
+
+int main() {
+    for(int i = 1; i <= 10; i++) {
+        printf("%d ", i);
+    }
+    printf("\n");
+    
+    return 0;
+}</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <pre class="text-white">1 2 3 4 5 6 7 8 9 10</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 2 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ২: While Loop (সমষ্টি গণনা)</h4>
+                    <p class="text-slate-400 mb-4">While loop ব্যবহার করে ১ থেকে ৫ পর্যন্ত যোগ করুন।</p>
+                    
+                    <div class="toggle-btn text-emerald-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int i = 1, sum = 0;
+    
+    while(i <= 5) {
+        sum += i;
+        i++;
+    }
+    
+    printf("সমষ্টি: %d\n", sum);
+    
+    return 0;
+}</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <pre class="text-white">সমষ্টি: 15</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONDITIONALS -->
+            <section id="conditional" class="category-section mb-16">
+                <h3 class="text-3xl font-bold text-emerald-400 mb-8 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center text-white">❓</span>
+                    Conditional উদাহরণ
+                </h3>
+
+                <!-- Example 1 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ১: বড় সংখ্যা খুঁজে বের করা</h4>
+                    <p class="text-slate-400 mb-4">দুটি সংখ্যার মধ্যে কোনটি বড় তা খুঁজে বের করুন।</p>
+                    
+                    <div class="toggle-btn text-emerald-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int a = 10, b = 20;
+    
+    if(a > b) {
+        printf("%d বড়\n", a);
+    } else {
+        printf("%d বড়\n", b);
+    }
+    
+    return 0;
+}</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <pre class="text-white">20 বড়</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ARRAYS -->
+            <section id="array" class="category-section mb-16">
+                <h3 class="text-3xl font-bold text-emerald-400 mb-8 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center text-white">📚</span>
+                    Array উদাহরণ
+                </h3>
+
+                <!-- Example 1 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ১: Array ডিক্লেয়ার এবং প্রিন্ট করা</h4>
+                    <p class="text-slate-400 mb-4">একটি array তৈরি করুন এবং সব উপাদান প্রিন্ট করুন।</p>
+                    
+                    <div class="toggle-btn text-emerald-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int numbers[5] = {10, 20, 30, 40, 50};
+    
+    for(int i = 0; i < 5; i++) {
+        printf("%d ", numbers[i]);
+    }
+    printf("\n");
+    
+    return 0;
+}</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <pre class="text-white">10 20 30 40 50</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FUNCTIONS -->
+            <section id="function" class="category-section mb-16">
+                <h3 class="text-3xl font-bold text-emerald-400 mb-8 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center text-white">⚙️</span>
+                    Function উদাহরণ
+                </h3>
+
+                <!-- Example 1 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ১: যোগের ফাংশন</h4>
+                    <p class="text-slate-400 mb-4">দুটি সংখ্যা যোগ করার জন্য একটি ফাংশন তৈরি করুন।</p>
+                    
+                    <div class="toggle-btn text-emerald-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>#include &lt;stdio.h&gt;
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    int result = add(5, 3);
+    printf("যোগফল: %d\n", result);
+    
+    return 0;
+}</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <pre class="text-white">যোগফল: 8</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STRINGS -->
+            <section id="string" class="category-section mb-16">
+                <h3 class="text-3xl font-bold text-emerald-400 mb-8 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center text-white">📝</span>
+                    String উদাহরণ
+                </h3>
+
+                <!-- Example 1 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ১: String ডিক্লেয়ার এবং প্রিন্ট করা</h4>
+                    <p class="text-slate-400 mb-4">একটি string তৈরি করুন এবং তা প্রিন্ট করুন।</p>
+                    
+                    <div class="toggle-btn text-emerald-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-green-400 text-sm"><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char name[50] = "বাংলাদেশ";
+    char message[] = "প্রোগ্রামিং শিখছি";
+    
+    printf("নাম: %s\n", name);
+    printf("বার্তা: %s\n", message);
+    
+    return 0;
+}</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">OUTPUT:</div>
+                            <pre class="text-white">নাম: বাংলাদেশ
+বার্তা: প্রোগ্রামিং শিখছি</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-slate-900 border-t border-slate-800 py-8 mt-16">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-slate-400">
+                © 2026 Naeem Academy. Built with <span class="text-red-500">♥</span> for aspiring programmers
+            </p>
+            <p class="text-slate-500 text-sm mt-2">C Programming Example - শিখো, অনুশীলন করো, মাস্টার হও!</p>
+            <p class="text-slate-500 text-sm mt-3"><a href="test.html" class="text-cyan-400 hover:text-cyan-300 transition-colors">📚 HTML Revison</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleSolution(btn) {
+            const solutionBox = btn.nextElementSibling;
+            if (solutionBox.classList.contains('hidden')) {
+                solutionBox.classList.remove('hidden');
+                btn.textContent = '▼ সমাধান লুকান';
+            } else {
+                solutionBox.classList.add('hidden');
+                btn.textContent = '▶ সমাধান দেখুন';
+            }
+        }
+    </script>
+</body>
+</html>

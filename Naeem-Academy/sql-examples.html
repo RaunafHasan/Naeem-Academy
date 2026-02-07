@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Example - SQL Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .example-card {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid #334155;
+            transition: all 0.3s ease;
+        }
+        .example-card:hover {
+            border-color: #ec4899;
+            box-shadow: 0 0 20px rgba(236, 72, 153, 0.1);
+        }
+        .solution-box {
+            background: #0f172a;
+            border: 1px solid #831843;
+        }
+        .output-box {
+            background: #1e293b;
+            border: 1px solid #334155;
+        }
+        .code-block {
+            background: #020617;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .toggle-btn {
+            cursor: pointer;
+            user-select: none;
+        }
+        table.demo-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        table.demo-table th, table.demo-table td {
+            border: 1px solid #64748b;
+            padding: 10px;
+            text-align: center;
+        }
+        table.demo-table th {
+            background: #334155;
+            font-weight: bold;
+        }
+        .category-section {
+            scroll-margin-top: 100px;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg bg-slate-950/80 border-b border-violet-500/20">
+        <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2 sm:space-x-3">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center">
+                        <span class="text-white font-bold text-xl sm:text-2xl">N</span>
+                    </div>
+                    <h1 class="text-xl sm:text-2xl font-bold text-white logo-text">Naeem Academy</h1>
+                </div>
+                <button id="mobileMenuBtn" class="md:hidden text-white p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-slate-300 hover:text-violet-400 transition-colors nav-link">Home</a>
+                    <a href="html.html" class="text-slate-300 hover:text-cyan-400 transition-colors nav-link">HTML</a>
+                    <a href="html-examples.html" class="text-slate-300 hover:text-cyan-400 transition-colors nav-link">HTML Examples</a>
+                    <a href="c-programming.html" class="text-slate-300 hover:text-emerald-400 transition-colors nav-link">C Programming</a>
+                    <a href="c-examples.html" class="text-slate-300 hover:text-emerald-400 transition-colors nav-link">C Examples</a>
+                    <a href="sql-query.html" class="text-slate-300 hover:text-fuchsia-400 transition-colors nav-link">SQL</a>
+                    <a href="sql-examples.html" class="text-fuchsia-400 font-semibold nav-link">SQL Examples</a>
+                </div>
+            </div>
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-2 border-t border-slate-800 pt-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="index.html" class="text-slate-300 hover:text-violet-400 transition-colors">Home</a>
+                    <a href="html.html" class="text-slate-300 hover:text-cyan-400 transition-colors">HTML</a>
+                    <a href="html-examples.html" class="text-slate-300 hover:text-cyan-400 transition-colors">HTML Examples</a>
+                    <a href="c-programming.html" class="text-slate-300 hover:text-emerald-400 transition-colors">C Programming</a>
+                    <a href="c-examples.html" class="text-slate-300 hover:text-emerald-400 transition-colors">C Examples</a>
+                    <a href="sql-query.html" class="text-slate-300 hover:text-fuchsia-400 transition-colors">SQL</a>
+                    <a href="sql-examples.html" class="text-fuchsia-400 font-semibold">SQL Examples</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-16">
+        <div class="container mx-auto px-6">
+            <!-- Hero Section -->
+            <div class="text-center lg:text-left mb-12">
+                <h2 class="text-5xl font-black text-white mb-4">
+                    📊 SQL Example
+                </h2>
+                <p class="text-xl text-slate-400 max-w-2xl mx-auto lg:ml-0 lg:mr-0">
+                    বিভিন্ন SQL কোয়েরির উদাহরণ এবং সমাধান দেখো এবং শিখো
+                </p>
+            </div>
+
+            <!-- Quick Navigation -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <a href="#basic" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-fuchsia-500 hover:text-white transition-all">📁 Basic Queries</a>
+                <a href="#select" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-fuchsia-500 hover:text-white transition-all">🔍 SELECT</a>
+                <a href="#filter" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-fuchsia-500 hover:text-white transition-all">⛓️ Filtering</a>
+                <a href="#join" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-fuchsia-500 hover:text-white transition-all">🔗 JOINs</a>
+                <a href="#aggregate" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-fuchsia-500 hover:text-white transition-all">📈 Aggregate</a>
+                <a href="#group" class="px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:bg-fuchsia-500 hover:text-white transition-all">👥 GROUP BY</a>
+            </div>
+
+            <!-- BASIC QUERIES -->
+            <section id="basic" class="category-section mb-16">
+                <h3 class="text-3xl font-bold text-fuchsia-400 mb-8 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-fuchsia-500 rounded-lg flex items-center justify-center text-white">📁</span>
+                    Basic SQL Queries উদাহরণ
+                </h3>
+
+                <!-- Example 1 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ১: টেবিল তৈরি করা</h4>
+                    <p class="text-slate-400 mb-4">একটি ছাত্র তথ্যের টেবিল তৈরি করুন।</p>
+                    
+                    <div class="toggle-btn text-fuchsia-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-pink-400 text-sm"><code>CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Age INT,
+    GPA DECIMAL(3,2)
+);</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">ফলাফল:</div>
+                            <p class="text-white">Students টেবিল সফলভাবে তৈরি হয়েছে</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 2 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ২: ডেটা ইনসার্ট করা</h4>
+                    <p class="text-slate-400 mb-4">Students টেবিলে নতুন ডেটা যোগ করুন।</p>
+                    
+                    <div class="toggle-btn text-fuchsia-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-pink-400 text-sm"><code>INSERT INTO Students VALUES 
+(1, 'রহিম', 20, 3.85),
+(2, 'করিম', 21, 3.75),
+(3, 'জামাল', 20, 3.95);</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">ফলাফল:</div>
+                            <p class="text-white">৩টি রেকর্ড সফলভাবে ইনসার্ট হয়েছে</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SELECT -->
+            <section id="select" class="category-section mb-16">
+                <h3 class="text-3xl font-bold text-fuchsia-400 mb-8 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-fuchsia-500 rounded-lg flex items-center justify-center text-white">🔍</span>
+                    SELECT Query উদাহরণ
+                </h3>
+
+                <!-- Example 1 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ১: সব ডেটা দেখানো</h4>
+                    <p class="text-slate-400 mb-4">Students টেবিল থেকে সব ডেটা সিলেক্ট করুন।</p>
+                    
+                    <div class="toggle-btn text-fuchsia-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-pink-400 text-sm"><code>SELECT * FROM Students;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4 overflow-x-auto">
+                            <div class="text-xs text-slate-400 mb-2">ফলাফল:</div>
+                            <table class="demo-table">
+                                <tr>
+                                    <th>StudentID</th>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>GPA</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>রহিম</td>
+                                    <td>20</td>
+                                    <td>3.85</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>করিম</td>
+                                    <td>21</td>
+                                    <td>3.75</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>জামাল</td>
+                                    <td>20</td>
+                                    <td>3.95</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 2 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ২: নির্দিষ্ট কলাম সিলেক্ট করা</h4>
+                    <p class="text-slate-400 mb-4">শুধুমাত্র নাম এবং GPA দেখান।</p>
+                    
+                    <div class="toggle-btn text-fuchsia-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-pink-400 text-sm"><code>SELECT Name, GPA FROM Students;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4 overflow-x-auto">
+                            <div class="text-xs text-slate-400 mb-2">ফলাফল:</div>
+                            <table class="demo-table">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>GPA</th>
+                                </tr>
+                                <tr>
+                                    <td>রহিম</td>
+                                    <td>3.85</td>
+                                </tr>
+                                <tr>
+                                    <td>করিম</td>
+                                    <td>3.75</td>
+                                </tr>
+                                <tr>
+                                    <td>জামাল</td>
+                                    <td>3.95</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FILTERING -->
+            <section id="filter" class="category-section mb-16">
+                <h3 class="text-3xl font-bold text-fuchsia-400 mb-8 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-fuchsia-500 rounded-lg flex items-center justify-center text-white">⛓️</span>
+                    WHERE Clause উদাহরণ
+                </h3>
+
+                <!-- Example 1 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ১: শর্ত সহ ডেটা খোঁজা</h4>
+                    <p class="text-slate-400 mb-4">যাদের GPA ৩.৮০ এর বেশি তাদের নাম দেখান।</p>
+                    
+                    <div class="toggle-btn text-fuchsia-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-pink-400 text-sm"><code>SELECT Name, GPA FROM Students 
+WHERE GPA > 3.80;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4 overflow-x-auto">
+                            <div class="text-xs text-slate-400 mb-2">ফলাফল:</div>
+                            <table class="demo-table">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>GPA</th>
+                                </tr>
+                                <tr>
+                                    <td>রহিম</td>
+                                    <td>3.85</td>
+                                </tr>
+                                <tr>
+                                    <td>জামাল</td>
+                                    <td>3.95</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AGGREGATE FUNCTIONS -->
+            <section id="aggregate" class="category-section mb-16">
+                <h3 class="text-3xl font-bold text-fuchsia-400 mb-8 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-fuchsia-500 rounded-lg flex items-center justify-center text-white">📈</span>
+                    Aggregate Functions উদাহরণ
+                </h3>
+
+                <!-- Example 1 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ১: গড় GPA গণনা করা</h4>
+                    <p class="text-slate-400 mb-4">সব ছাত্রদের গড় GPA বের করুন।</p>
+                    
+                    <div class="toggle-btn text-fuchsia-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-pink-400 text-sm"><code>SELECT AVG(GPA) FROM Students;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">ফলাফল:</div>
+                            <p class="text-white">গড় GPA: 3.85</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 2 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ২: ছাত্র সংখ্যা গণনা করা</h4>
+                    <p class="text-slate-400 mb-4">মোট কত জন ছাত্র আছে তা দেখান।</p>
+                    
+                    <div class="toggle-btn text-fuchsia-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-pink-400 text-sm"><code>SELECT COUNT(*) FROM Students;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4">
+                            <div class="text-xs text-slate-400 mb-2">ফলাফল:</div>
+                            <p class="text-white">মোট ছাত্র: 3</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- GROUP BY -->
+            <section id="group" class="category-section mb-16">
+                <h3 class="text-3xl font-bold text-fuchsia-400 mb-8 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-fuchsia-500 rounded-lg flex items-center justify-center text-white">👥</span>
+                    GROUP BY উদাহরণ
+                </h3>
+
+                <!-- Example 1 -->
+                <div class="example-card rounded-2xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">উদাহরণ ১: বয়স অনুযায়ী গ্রুপ করা</h4>
+                    <p class="text-slate-400 mb-4">প্রতিটি বয়সে কত জন ছাত্র আছে তা দেখান।</p>
+                    
+                    <div class="toggle-btn text-fuchsia-400 font-semibold mb-4" onclick="toggleSolution(this)">
+                        ▶ সমাধান দেখুন
+                    </div>
+                    
+                    <div class="solution-box rounded-xl p-4 hidden">
+                        <div class="code-block rounded-lg p-4 mb-4 overflow-x-auto">
+                            <pre class="text-pink-400 text-sm"><code>SELECT Age, COUNT(*) 
+FROM Students 
+GROUP BY Age;</code></pre>
+                        </div>
+                        <div class="output-box rounded-lg p-4 overflow-x-auto">
+                            <div class="text-xs text-slate-400 mb-2">ফলাফল:</div>
+                            <table class="demo-table">
+                                <tr>
+                                    <th>Age</th>
+                                    <th>Count</th>
+                                </tr>
+                                <tr>
+                                    <td>20</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td>21</td>
+                                    <td>1</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-slate-900 border-t border-slate-800 py-8 mt-16">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-slate-400">
+                © 2026 Naeem Academy. Built with <span class="text-red-500">♥</span> for aspiring programmers
+            </p>
+            <p class="text-slate-500 text-sm mt-2">SQL Example - শিখো, অনুশীলন করো, মাস্টার হও!</p>
+            <p class="text-slate-500 text-sm mt-3"><a href="test.html" class="text-cyan-400 hover:text-cyan-300 transition-colors">📚 HTML Revison</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleSolution(btn) {
+            const solutionBox = btn.nextElementSibling;
+            if (solutionBox.classList.contains('hidden')) {
+                solutionBox.classList.remove('hidden');
+                btn.textContent = '▼ সমাধান লুকান';
+            } else {
+                solutionBox.classList.add('hidden');
+                btn.textContent = '▶ সমাধান দেখুন';
+            }
+        }
+    </script>
+</body>
+</html>

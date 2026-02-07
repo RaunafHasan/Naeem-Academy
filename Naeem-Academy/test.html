@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive HTML Learning Platform</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    header p {
+      font-size: 1.1em;
+      opacity: 0.9;
+    }
+
+    .lessons-container {
+      padding: 40px 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .lesson-card {
+      background: white;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .lesson-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .lesson-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px 30px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .lesson-header:hover {
+      background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    }
+
+    .lesson-header h3 {
+      font-size: 1.5em;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .lesson-number {
+      background: rgba(255, 255, 255, 0.2);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .arrow {
+      font-size: 1.5em;
+      transition: transform 0.3s ease;
+    }
+
+    .lesson-header.active .arrow {
+      transform: rotate(180deg);
+    }
+
+    .lesson-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+
+    .lesson-content.active {
+      max-height: 2000px;
+    }
+
+    .code-section {
+      padding: 30px;
+      background: #f8f9fa;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .code-label {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #2d3748;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .code-label::before {
+      content: '💻';
+      font-size: 1.3em;
+    }
+
+    .run-btn {
+      background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 25px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .run-btn::before {
+      content: '▶';
+      font-size: 1.1em;
+    }
+
+    .run-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+    }
+
+    .run-btn:active {
+      transform: translateY(0);
+    }
+
+    .code-display {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 20px;
+      border-radius: 10px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      overflow-x: auto;
+      max-height: 500px;
+      overflow-y: auto;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .code-display pre {
+      margin: 0;
+    }
+
+    .output-section {
+      padding: 30px;
+      background: white;
+      display: none;
+    }
+
+    .output-section.active {
+      display: block;
+    }
+
+    .output-header {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #12171f;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .output-header::before {
+      content: '🎨';
+      font-size: 1.3em;
+    }
+
+    .output-display {
+      background: #f7fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 20px;
+      min-height: 400px;
+    }
+
+    .output-display iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      background: white;
+      border-radius: 5px;
+    }
+
+    .close-output-btn {
+      background: #f56565;
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .close-output-btn:hover {
+      background: #e53e3e;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.8em;
+      }
+
+      .lesson-header h3 {
+        font-size: 1.2em;
+      }
+
+      .lessons-container {
+        padding: 20px 10px;
+      }
+
+      .code-section, .output-section {
+        padding: 20px;
+      }
+
+      .output-display iframe {
+        height: 400px;
+      }
+    }
+
+    .badge {
+      background: rgba(255, 255, 255, 0.3);
+      padding: 5px 15px;
+      border-radius: 15px;
+      font-size: 0.9em;
+      font-weight: normal;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🚀 Interactive HTML Learning Platform</h1>
+    <p>Click on any lesson title to view code, then click "Run Code" to see the output!</p>
+  </header>
+
+  <div class="lessons-container" id="lessonsContainer">
+    <!-- Lessons will be dynamically added here -->
+  </div>
+
+  <script>
+    const lessons = [
+      {
+        title: "Basic HTML Tags",
+        code: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Basic HTML Tags</title>
+</head>
+<body>
+
+<h1>H1 Heading (Largest)</h1>
+<h2>H2 Heading</h2>
+<h3>H3 Heading</h3>
+<h4>H4 Heading</h4>
+<h5>H5 Heading</h5>
+<h6>H6 Heading (Smallest)</h6>
+
+<hr>
+
+<p>
+  This is <b>Bold text</b><br>
+  This is <i>Italic text</i><br>
+  This is <big>Big text</big><br>
+  This is <small>Small text</small><br>
+</p>
+
+<hr>
+
+<p>
+  Chemical Formula: H<sub>2</sub>O <br>
+  Mathematical Power: X<sup>2</sup>
+</p>
+
+</body>
+</html>`
+      },
+      {
+        title: "HTML Links (Anchor Tag)",
+        code: `<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML Link Tag</title>
+</head>
+<body>
+
+<h2>Anchor (Link) Tag</h2>
+
+<a href="https://www.google.com">Visit Google</a>
+<br><br>
+
+<a href="https://www.youtube.com" target="_blank">
+  Open YouTube (New Tab)
+</a>
+<br><br>
+
+<a href="mailto:test@gmail.com">Send Email</a>
+<br><br>
+
+<a href="tel:+880123456789">Call Now</a>
+
+<hr>
+
+<p style="color: #666;">
+  Click on the links to see how they work!
+</p>
+
+</body>
+</html>`
+      },
+      {
+        title: "HTML Images",
+        code: `<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Tag</title>
+</head>
+<body>
+
+<h2>Image Example</h2>
+
+<img 
+  src="https://via.placeholder.com/300x200/667eea/ffffff?text=Sample+Image"
+  alt="Sample Image"
+  width="300"
+  height="200"
+  title="This is an image">
+
+<p>
+  <b>Image Attributes:</b><br>
+  • src - Image source<br>
+  • alt - Alternative text<br>
+  • width/height - Dimensions<br>
+  • title - Tooltip text
+</p>
+
+</body>
+</html>`
+      },
+      {
+        title: "Ordered List",
+        code: `<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Ordered List</h2>
+
+<h3>Default (Numbers)</h3>
+<ol>
+  <li>HTML</li>
+  <li>CSS</li>
+  <li>JavaScript</li>
+</ol>
+
+<h3>Type: A (Alphabets)</h3>
+<ol type="A">
+  <li>HTML</li>
+  <li>CSS</li>
+  <li>JavaScript</li>
+</ol>
+
+<h3>Start from 5</h3>
+<ol start="5">
+  <li>HTML</li>
+  <li>CSS</li>
+  <li>JavaScript</li>
+</ol>
+
+</body>
+</html>`
+      },
+      {
+        title: "Unordered List",
+        code: `<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Unordered List</h2>
+
+<h3>Disc (Default)</h3>
+<ul style="list-style-type:disc;">
+  <li>Apple</li>
+  <li>Banana</li>
+  <li>Mango</li>
+</ul>
+
+<h3>Circle</h3>
+<ul style="list-style-type:circle;">
+  <li>Apple</li>
+  <li>Banana</li>
+  <li>Mango</li>
+</ul>
+
+<h3>Square</h3>
+<ul style="list-style-type:square;">
+  <li>Apple</li>
+  <li>Banana</li>
+  <li>Mango</li>
+</ul>
+
+</body>
+</html>`
+      },
+      {
+        title: "HTML Table - Basic",
+        code: `<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Basic Table Example</h2>
+
+<table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse;">
+  <tr style="background: #667eea; color: white;">
+    <th>Name</th>
+    <th>Age</th>
+    <th>City</th>
+  </tr>
+  <tr>
+    <td>Naeem</td>
+    <td>18</td>
+    <td>Dhaka</td>
+  </tr>
+  <tr style="background: #f0f0f0;">
+    <td>Karim</td>
+    <td>20</td>
+    <td>Chittagong</td>
+  </tr>
+  <tr>
+    <td>Rahim</td>
+    <td>19</td>
+    <td>Sylhet</td>
+  </tr>
+</table>
+
+</body>
+</html>`
+      },
+      {
+        title: "Complex Table - Rowspan & Colspan",
+        code: `<!DOCTYPE html>
+<html>
+<head>
+  <title>Complex Table Structure</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+    }
+    th, td {
+      border: 2px solid #333;
+      padding: 12px;
+      text-align: center;
+    }
+    th {
+      background: #667eea;
+      color: white;
+      font-weight: bold;
+    }
+    .header-row {
+      background: #764ba2;
+      color: white;
+      font-weight: bold;
+    }
+    .subheader {
+      background: #a78bfa;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+
+<h2>📊 Student Mark Sheet with Rowspan & Colspan</h2>
+
+<table>
+  <tr class="header-row">
+    <th colspan="6">Student Performance Report - 2024</th>
+  </tr>
+  <tr style="background: #667eea; color: white;">
+    <th rowspan="2">Student Name</th>
+    <th rowspan="2">Roll No</th>
+    <th colspan="3">Subjects Marks</th>
+    <th rowspan="2">Total</th>
+  </tr>
+  <tr class="subheader">
+    <th>Math</th>
+    <th>English</th>
+    <th>Science</th>
+  </tr>
+  <tr>
+    <td>Naeem Ahmed</td>
+    <td>101</td>
+    <td>85</td>
+    <td>90</td>
+    <td>88</td>
+    <td><b>263</b></td>
+  </tr>
+  <tr>
+    <td>Karim Khan</td>
+    <td>102</td>
+    <td>78</td>
+    <td>82</td>
+    <td>80</td>
+    <td><b>240</b></td>
+  </tr>
+  <tr>
+    <td>Rahim Islam</td>
+    <td>103</td>
+    <td>92</td>
+    <td>88</td>
+    <td>95</td>
+    <td><b>275</b></td>
+  </tr>
+  <tr style="background: #ffd700;">
+    <td colspan="2"><b>Class Average</b></td>
+    <td><b>85</b></td>
+    <td><b>86.7</b></td>
+    <td><b>87.7</b></td>
+    <td><b>259.3</b></td>
+  </tr>
+</table>
+
+<hr>
+
+<h2>🏢 Company Organization Structure</h2>
+
+<table>
+  <tr class="header-row">
+    <th colspan="4">Company Hierarchy</th>
+  </tr>
+  <tr style="background: #667eea; color: white;">
+    <th>Department</th>
+    <th>Manager</th>
+    <th>Team Lead</th>
+    <th>Members</th>
+  </tr>
+  <tr>
+    <td rowspan="3">IT Department</td>
+    <td rowspan="3">John Doe</td>
+    <td>Development</td>
+    <td>8</td>
+  </tr>
+  <tr>
+    <td>Testing</td>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>Support</td>
+    <td>4</td>
+  </tr>
+  <tr>
+    <td rowspan="2">Sales</td>
+    <td rowspan="2">Sarah Smith</td>
+    <td>B2B Sales</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <td>B2C Sales</td>
+    <td>7</td>
+  </tr>
+  <tr style="background: #90ee90;">
+    <td colspan="3"><b>Total Employees</b></td>
+    <td><b>30</b></td>
+  </tr>
+</table>
+
+<hr>
+
+<h2>📅 Weekly Class Schedule</h2>
+
+<table>
+  <tr class="header-row">
+    <th colspan="6">Class Routine - Grade 10</th>
+  </tr>
+  <tr style="background: #667eea; color: white;">
+    <th>Time</th>
+    <th>Monday</th>
+    <th>Tuesday</th>
+    <th>Wednesday</th>
+    <th>Thursday</th>
+    <th>Friday</th>
+  </tr>
+  <tr>
+    <td>8:00-9:00</td>
+    <td>Math</td>
+    <td>English</td>
+    <td>Math</td>
+    <td>Science</td>
+    <td>English</td>
+  </tr>
+  <tr>
+    <td>9:00-10:00</td>
+    <td>Science</td>
+    <td>Math</td>
+    <td>English</td>
+    <td>Math</td>
+    <td>Science</td>
+  </tr>
+  <tr>
+    <td>10:00-10:30</td>
+    <td colspan="5" style="background: #ffeb3b;"><b>BREAK TIME</b></td>
+  </tr>
+  <tr>
+    <td>10:30-11:30</td>
+    <td>History</td>
+    <td>Geography</td>
+    <td>History</td>
+    <td>Computer</td>
+    <td>Art</td>
+  </tr>
+  <tr>
+    <td>11:30-12:30</td>
+    <td colspan="2">Sports</td>
+    <td>Computer</td>
+    <td colspan="2">Library</td>
+  </tr>
+</table>
+
+<hr>
+
+<h2>💰 Product Price Comparison</h2>
+
+<table>
+  <tr class="header-row">
+    <th colspan="5">Price Comparison - Smartphones 2024</th>
+  </tr>
+  <tr style="background: #667eea; color: white;">
+    <th rowspan="2">Brand</th>
+    <th rowspan="2">Model</th>
+    <th colspan="2">Price (BDT)</th>
+    <th rowspan="2">Discount</th>
+  </tr>
+  <tr class="subheader">
+    <th>Regular</th>
+    <th>Sale</th>
+  </tr>
+  <tr>
+    <td rowspan="2">Samsung</td>
+    <td>Galaxy S24</td>
+    <td>85,000</td>
+    <td style="color: green; font-weight: bold;">75,000</td>
+    <td style="color: red;">12%</td>
+  </tr>
+  <tr>
+    <td>Galaxy A54</td>
+    <td>45,000</td>
+    <td style="color: green; font-weight: bold;">40,000</td>
+    <td style="color: red;">11%</td>
+  </tr>
+  <tr>
+    <td rowspan="2">iPhone</td>
+    <td>iPhone 15 Pro</td>
+    <td>1,25,000</td>
+    <td style="color: green; font-weight: bold;">1,15,000</td>
+    <td style="color: red;">8%</td>
+  </tr>
+  <tr>
+    <td>iPhone 14</td>
+    <td>95,000</td>
+    <td style="color: green; font-weight: bold;">85,000</td>
+    <td style="color: red;">11%</td>
+  </tr>
+  <tr style="background: #add8e6;">
+    <td colspan="5"><b>Note:</b> Prices valid till 31st December 2024</td>
+  </tr>
+</table>
+
+</body>
+</html>`
+      },
+      {
+        title: "DIV and SPAN",
+        code: `<!DOCTYPE html>
+<html>
+<body>
+
+<h2>DIV & SPAN Example</h2>
+
+<div style="background:lightblue; padding:15px; margin-bottom: 10px; border-radius: 5px;">
+  This is a DIV (Block element)
+  <br>It takes full width
+</div>
+
+<div style="background:lightcoral; padding:15px; margin-bottom: 10px; border-radius: 5px;">
+  Another DIV below the first one
+</div>
+
+<p>
+  This is <span style="color:red; font-weight: bold;">SPAN</span> 
+  inside paragraph. 
+  <span style="background: yellow;">SPAN is inline</span> 
+  and doesn't break the line.
+</p>
+
+</body>
+</html>`
+      },
+      {
+        title: "HTML Forms",
+        code: `<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Form Example</h2>
+
+<form style="background: #f0f0f0; padding: 20px; border-radius: 10px;">
+
+  <label>Name:</label><br>
+  <input type="text" name="name" required 
+    style="padding: 8px; margin: 5px 0; width: 200px;"><br><br>
+
+  <label>Email:</label><br>
+  <input type="email" name="email" 
+    style="padding: 8px; margin: 5px 0; width: 200px;"><br><br>
+
+  <label>Password:</label><br>
+  <input type="password" 
+    style="padding: 8px; margin: 5px 0; width: 200px;"><br><br>
+
+  <label>Gender:</label><br>
+  <input type="radio" name="g"> Male
+  <input type="radio" name="g"> Female<br><br>
+
+  <label>Skills:</label><br>
+  <input type="checkbox"> HTML
+  <input type="checkbox"> CSS
+  <input type="checkbox"> JavaScript<br><br>
+
+  <input type="submit" value="Submit" 
+    style="background: #667eea; color: white; padding: 10px 30px; border: none; border-radius: 5px; cursor: pointer;">
+
+</form>
+
+</body>
+</html>`
+      },
+      {
+        title: "HTML IFrame",
+        code: `<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Iframe Example</h2>
+
+<p>Embedding Wikipedia:</p>
+
+<iframe 
+  src="https://en.wikipedia.org/wiki/HTML"
+  width="100%"
+  height="400"
+  frameborder="0"
+  style="border: 2px solid #667eea; border-radius: 10px;">
+</iframe>
+
+<p style="margin-top: 15px; color: #666;">
+  An iframe allows you to embed another webpage inside your page.
+</p>
+
+</body>
+</html>`
+      },
+      {
+        title: "Audio & Video",
+        code: `<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Audio Example</h2>
+<p>Note: Audio requires actual audio file to play</p>
+<audio controls style="width: 100%;">
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  Your browser does not support audio.
+</audio>
+
+<hr>
+
+<h2>Video Example</h2>
+<video 
+  src="https://www.w3schools.com/html/mov_bbb.mp4"
+  controls
+  width="100%"
+  style="max-width: 500px; border-radius: 10px;">
+  Your browser does not support video.
+</video>
+
+<p style="color: #666; margin-top: 10px;">
+  <b>Attributes:</b> controls, autoplay, loop, muted
+</p>
+
+</body>
+</html>`
+      }
+    ];
+
+    // Generate lesson cards
+    function generateLessons() {
+      const container = document.getElementById('lessonsContainer');
+      
+      lessons.forEach((lesson, index) => {
+        const lessonCard = document.createElement('div');
+        lessonCard.className = 'lesson-card';
+        lessonCard.innerHTML = `
+          <div class="lesson-header" onclick="toggleLesson(${index})">
+            <h3>
+              <span class="lesson-number">${index + 1}</span>
+              ${lesson.title}
+            </h3>
+            <span class="arrow">▼</span>
+          </div>
+          <div class="lesson-content" id="content-${index}">
+            <div class="code-section">
+              <div class="code-header">
+                <div class="code-label">HTML Code</div>
+                <button class="run-btn" onclick="runCode(${index})">Run Code</button>
+              </div>
+              <div class="code-display">
+                <pre>${escapeHtml(lesson.code)}</pre>
+              </div>
+            </div>
+            <div class="output-section" id="output-${index}">
+              <div class="output-header">Live Output</div>
+              <div class="output-display">
+                <iframe id="iframe-${index}"></iframe>
+              </div>
+              <button class="close-output-btn" onclick="closeOutput(${index})">Close Output</button>
+            </div>
+          </div>
+        `;
+        container.appendChild(lessonCard);
+      });
+    }
+
+    // Toggle lesson content
+    function toggleLesson(index) {
+      const content = document.getElementById(`content-${index}`);
+      const header = content.previousElementSibling;
+      
+      // Close all other lessons
+      document.querySelectorAll('.lesson-content').forEach((item, i) => {
+        if (i !== index) {
+          item.classList.remove('active');
+          item.previousElementSibling.classList.remove('active');
+        }
+      });
+      
+      // Toggle current lesson
+      content.classList.toggle('active');
+      header.classList.toggle('active');
+    }
+
+    // Run code
+    function runCode(index) {
+      const output = document.getElementById(`output-${index}`);
+      const iframe = document.getElementById(`iframe-${index}`);
+      
+      output.classList.add('active');
+      iframe.srcdoc = lessons[index].code;
+      
+      // Scroll to output
+      setTimeout(() => {
+        output.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
+
+    // Close output
+    function closeOutput(index) {
+      const output = document.getElementById(`output-${index}`);
+      output.classList.remove('active');
+    }
+
+    // Escape HTML for display
+    function escapeHtml(text) {
+      const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+      };
+      return text.replace(/[&<>"']/g, m => map[m]);
+    }
+
+    // Initialize
+    generateLessons();
+  </script>
+</body>
+</html>
